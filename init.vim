@@ -7,6 +7,13 @@ set splitright
 set clipboard=unnamed
 set hls
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set autoread
+
+" search settings 
+set ignorecase
+set smartcase
+set incsearch
+
 
 if &compatible
   set nocompatible

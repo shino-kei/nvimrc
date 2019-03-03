@@ -59,3 +59,86 @@ hook_add = '''
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 '''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+
+  " 水平に分割する
+  let g:quickrun_config = get(g:, 'quickrun_config', {})
+  let g:quickrun_config._ = {
+        \ 'outputter' : 'error',
+        \ 'outputter/error/success' : 'buffer',
+        \ 'outputter/error/error'   : 'quickfix',
+        \ 'outputter/buffer/split'  : ':rightbelow 8sp',
+        \ 'outputter/buffer/close_on_empty' : 1,
+        \ }
+
+  let g:quickrun_config.cpp = {
+  \   'command': 'g++',
+  \   'cmdopt': '-std=c++11'
+  \ }
+
+  " \r でquickfixを閉じて、保存してからquickrunを実行する。
+  let g:quickrun_no_default_key_mappings = 1
+  nnoremap \q :cclose<CR>:write<CR>:QuickRun -mode n<CR>
+  xnoremap \q :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
+
+  " quickrun.vim が実行していない場合には <C-c> を呼び出す
+  nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>" 
+  nnoremap <silent> <C-q> :QuickRun<CR>
+'''
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
+'''
+
+[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+on_ft = ['c', 'cpp']
+depends = ['deoplete.nvim']
+
+# syntax linter 
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+    " シンボルカラムを表示したままにする
+    let g:ale_sign_column_always = 1
+    " 保存時に整形してくれる
+    let g:ale_fix_on_save = 1
+    " 補完してくれる
+    let g:ale_completion_enabled = 1
+    " エラー行に表示するマーク
+    let g:ale_sign_error = '⨉'
+    let g:ale_sign_warning = '⚠'
+    " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_linters = {
+        \   'c' : ['clangd'],
+        \   'cpp' : ['clangd']
+    \}
+'''
+
+[[plugins]]
+repo = 'airblade/vim-rooter'
+hook_add =  '''
+  let g:rooter_patterns = ['CMakeLists.txt', '.git/']
+'''
