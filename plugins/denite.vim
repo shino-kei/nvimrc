@@ -19,9 +19,9 @@ call denite#custom#map('insert', "<C-s>", '<denite:do_action:vsplit>')
 call denite#custom#map('normal', "s", '<denite:do_action:vsplit>')
 
 " grepでptを使用するように設定
-call denite#custom#var('grep', 'command', ['pt', '--follow', '--nogroup', '--nocolor', '--hidden'])
-call denite#custom#var('grep', 'default_opts', [])
-call denite#custom#var('grep', 'recursive_opts', [])
-
-" カレントディレクトリ内の検索もptを使用する
-call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
+" call denite#custom#var('grep', 'command', ['pt', '--follow', '--nogroup', '--nocolor', '--hidden'])
+" call denite#custom#var('grep', 'default_opts', [])
+" call denite#custom#var('grep', 'recursive_opts', [])
+"
+" " カレントディレクトリ内の検索もptを使用する
+" call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])

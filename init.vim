@@ -32,3 +32,7 @@ filetype plugin indent on
 syntax enable
 
 :command UP UpdateRemotePlugins
+
+let mapleader = "\<Space>"
+nnoremap <Leader>o :only<CR>
+nnoremap <Leader>n :noh<CR>
