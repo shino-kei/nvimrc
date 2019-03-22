@@ -33,6 +33,34 @@ repo = 'Shougo/denite.nvim'
 hook_add = '''
   source ~/.config/nvim/plugins/denite.vim
 '''
+hook_post_source = '''
+  call denite#custom#option('default', 'prompt', '>')
+  call denite#custom#option('_', 'highlight_matched_range', 'None')
+  call denite#custom#option('_', 'highlight_matched_char', 'None')
+
+  " denite/insert モードのときは，C- で移動できるようにする
+  call denite#custom#map('insert', "<Tab>", '<denite:move_to_next_line>')
+  call denite#custom#map('insert', "<S-Tab>", '<denite:move_to_previous_line>')
+
+  " ノーマルモードで起動、jjでノーマルへ
+  call denite#custom#option('default', {'mode': 'normal'})
+  call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+
+
+  " tabopen や vsplit のキーバインドを割り当て
+  " call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+  " call denite#custom#map('insert', "<C-s>", '<denite:do_action:vsplit>')
+  " call denite#custom#map('normal', "s", '<denite:do_action:vsplit>')
+
+  " grepでagを使用するように設定
+  " call denite#custom#var('grep', 'command', ['pt', '--follow', '--nogroup', '--nocolor', '--hidden'])
+  call denite#custom#var('grep', 'command', ['ag'])
+  call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+
+  " カレントディレクトリ内の検索もagを使用する
+  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
@@ -142,3 +170,6 @@ repo = 'airblade/vim-rooter'
 hook_add =  '''
   let g:rooter_patterns = ['CMakeLists.txt', '.git/']
 '''
+
+[[plugins]]
+repo = "vim-scripts/DoxygenToolkit.vim"
