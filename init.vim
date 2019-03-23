@@ -14,6 +14,9 @@ set ignorecase
 set smartcase
 set incsearch
 
+let mapleader = "\<Space>"
+nnoremap <Leader>o :only<CR>
+nnoremap <Leader>n :noh<CR>
 
 if &compatible
   set nocompatible
@@ -33,6 +36,3 @@ syntax enable
 
 :command UP UpdateRemotePlugins
 
-let mapleader = "\<Space>"
-nnoremap <Leader>o :only<CR>
-nnoremap <Leader>n :noh<CR>

@@ -31,6 +31,8 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
+  nnoremap [denite] <Nop>
+  nmap <Leader>d [denite]
   source ~/.config/nvim/plugins/denite.vim
 '''
 hook_post_source = '''
