@@ -179,3 +179,16 @@ hook_add =  '''
 
 [[plugins]]
 repo = "vim-scripts/DoxygenToolkit.vim"
+
+[[plugins]]
+repo = "kana/vim-operator-user"
+
+[[plugins]]
+repo = "rhysd/vim-clang-format"
+hook_add = '''
+  autocmd FileType c,cpp,objc ClangFormatAutoEnable
+  autocmd FileType c,cpp,objc map <buffer><Leader>f <Plug>(operator-clang-format)
+   " autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+
+'''
+
