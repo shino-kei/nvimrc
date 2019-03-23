@@ -7,6 +7,7 @@ repo = 'tpope/vim-endwise'
 [[plugins]]
 repo = 'Townk/vim-autoclose'
 
+
 [[plugins]]
 repo = 'joshdick/onedark.vim'
 hook_add = '''
@@ -125,6 +126,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
+on_i = 1
 
 [[plugins]]
 repo = 'tyru/caw.vim'
@@ -192,3 +194,6 @@ hook_add = '''
 
 '''
 
+# clipboard plugin
+[[plugins]]
+repo = 'christoomey/vim-system-copy'
