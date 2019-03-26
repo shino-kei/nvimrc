@@ -200,3 +200,12 @@ repo = 'christoomey/vim-system-copy'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+
+# status bar color settings 
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ }
+'''
