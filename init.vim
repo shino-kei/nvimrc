@@ -14,6 +14,8 @@ set ignorecase
 set smartcase
 set incsearch
 
+inoremap <silent> jj <ESC>
+
 let mapleader = "\<Space>"
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
