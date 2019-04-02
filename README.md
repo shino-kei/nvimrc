@@ -1,5 +1,18 @@
 # readme 
 
+## install neovim
+```
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+sudo apt-get install neovim
+```
+
+## install dein
+```
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh 
+sh ./installer.sh ~/.cache/dein
+```
+
 ## depends
 ```bash
 sudo apt install clang-6.0 clang-tools-6.0 llvm
