@@ -14,12 +14,13 @@ set ignorecase
 set smartcase
 set incsearch
 
+let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
 inoremap <silent> AA <ESC>A
 
-let mapleader = "\<Space>"
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
+nnoremap <Leader>; A;<ESC>
 
 if &compatible
   set nocompatible
