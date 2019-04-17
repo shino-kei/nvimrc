@@ -212,3 +212,6 @@ let g:lightline = {
 
 [[plugins]]
 repo = 'taketwo/vim-ros'
+
+[[plugins]]
+repo = 'wordijp/NeoDebug'
