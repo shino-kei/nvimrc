@@ -20,9 +20,13 @@ inoremap <silent> AA <ESC>A
 
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
-nnoremap <Leader>; A;<ESC>
+nnoremap <Leader>, A;<ESC>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>m :make<CR>
+
+" replace ';' and ':'
+noremap ; :
+noremap : ;
 
 if &compatible
   set nocompatible
