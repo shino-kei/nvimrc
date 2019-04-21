@@ -1,2 +1,2 @@
-nmap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen=1
