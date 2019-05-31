@@ -81,6 +81,7 @@ hook_add = '''
     let g:LanguageClient_serverCommands = {
         \ 'c': ['clangd'],
         \ 'cpp': ['clangd'],
+        \ 'python': ['pyls'],
     \ }
     " not stop completion $ & /
     let g:LanguageClient_loadSettings = 1
@@ -215,3 +216,17 @@ repo = 'taketwo/vim-ros'
 
 [[plugins]]
 repo = 'wordijp/NeoDebug'
+
+[[plugins]]
+repo = 'google/yapf'
+hook_add = '''
+'''
+
+[[plugins]]
+repo = 'bennyyip/vim-yapf'
+hook_add = '''
+  autocmd FileType python YapfAutoEnable
+'''
+
+[[plugins]]
+repo = 'heavenshell/vim-pydocstring' 

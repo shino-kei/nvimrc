@@ -24,6 +24,7 @@ nnoremap <Leader>; A;<ESC>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>m :w<CR>:make<CR>
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
 " replace ';' and ':'
 noremap ; :
