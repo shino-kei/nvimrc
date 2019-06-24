@@ -15,9 +15,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'w0rp/ale'
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
   source ~/.config/nvim/plugins/gitgutter.vim
@@ -86,6 +83,9 @@ hook_add = '''
     " not stop completion $ & /
     let g:LanguageClient_loadSettings = 1
 
+    " stop linter
+    let g:LanguageClient_diagnosticsEnable = 0
+
     set hidden
     set signcolumn=yes
     " let g:LanguageClient_hoverPreview = "Never"
@@ -152,27 +152,7 @@ repo = 'Shougo/neoinclude.vim'
 on_ft = ['c', 'cpp']
 depends = ['deoplete.nvim']
 
-# syntax linter 
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-    " シンボルカラムを表示したままにする
-    let g:ale_sign_column_always = 1
-    " 保存時に整形してくれる
-    let g:ale_fix_on_save = 1
-    " 補完してくれる
-    let g:ale_completion_enabled = 1
-    " エラー行に表示するマーク
-    let g:ale_sign_error = '⨉'
-    let g:ale_sign_warning = '⚠'
-    " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-    let g:ale_linters = {
-        \   'c' : ['clangd'],
-        \   'cpp' : ['clangd']
-    \}
-'''
+
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
@@ -208,7 +188,54 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
       \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ],
+      \             [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ],
+      \ },
       \ }
+'''
+
+# lightline extension for ale
+[[plugins]]
+repo = 'maximbaz/lightline-ale'
+depends = ['lightline.vim', 'ale']
+hook_add = '''
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+'''
+
+# syntax linter 
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+    " シンボルカラムを表示したままにする
+    let g:ale_sign_column_always = 1
+    " 保存時に整形してくれる
+    let g:ale_fix_on_save = 1
+    " 補完してくれる
+    let g:ale_completion_enabled = 1
+    " エラー行に表示するマーク
+    let g:ale_sign_error = '⨉'
+    let g:ale_sign_warning = '⚠'
+    " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_linters = {
+        \   'c' : ['clangd'],
+        \   'cpp' : ['clangd'],
+        \   'python' : ['flake8'],
+    \}
 '''
 
 [[plugins]]
