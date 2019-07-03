@@ -257,3 +257,16 @@ hook_add = '''
 
 [[plugins]]
 repo = 'heavenshell/vim-pydocstring' 
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+ 
+###fzf.vim
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+hook_add = '''
+" ファイル一覧を出すときにプレビュー表示
+command! -bang -nargs=? -complete=dir Files
+\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)<Paste>
+'''
