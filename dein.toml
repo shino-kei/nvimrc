@@ -39,8 +39,8 @@ hook_post_source = '''
   call denite#custom#option('_', 'highlight_matched_char', 'None')
 
   " denite/insert モードのときは，C- で移動できるようにする
-  call denite#custom#map('insert', "<Tab>", '<denite:move_to_next_line>')
-  call denite#custom#map('insert', "<S-Tab>", '<denite:move_to_previous_line>')
+  " call denite#custom#map('insert', "<Tab>", '<denite:move_to_next_line>')
+  " call denite#custom#map('insert', "<S-Tab>", '<denite:move_to_previous_line>')
 
   " ノーマルモードで起動、jjでノーマルへ
   call denite#custom#option('default', {'mode': 'normal'})
@@ -58,8 +58,8 @@ hook_post_source = '''
   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
   call denite#custom#var('grep', 'recursive_opts', [])
 
-  " カレントディレクトリ内の検索もagを使用する
-  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+  call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
 '''
 
 [[plugins]]
@@ -71,7 +71,7 @@ hook_add = '''
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
 rev = 'next'
-build = ['bash install.sh']
+build = 'bash install.sh'
 depends = ['deoplete.nvim']
 hook_add = '''
     let s:node = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CONFIG_HOME
