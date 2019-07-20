@@ -13,6 +13,8 @@ set autoread
 set ignorecase
 set smartcase
 set incsearch
+" スワップファイルを作らない
+set noswapfile
 
 let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
