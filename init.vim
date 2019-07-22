@@ -33,6 +33,14 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 noremap ; :
 noremap : ;
 
+" dein自体の自動インストール
+let s:cache_home = expand('~/.cache')
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
+
 if &compatible
   set nocompatible
 endif
