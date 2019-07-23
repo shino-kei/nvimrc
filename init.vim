@@ -33,6 +33,12 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 noremap ; :
 noremap : ;
 
+
+if has('persistent_undo')
+  set undodir=~/.cache/undo
+  set undofile
+endif
+
 " dein自体の自動インストール
 let s:cache_home = expand('~/.cache')
 let s:dein_dir = s:cache_home . '/dein'
