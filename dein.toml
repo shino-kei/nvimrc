@@ -273,3 +273,9 @@ hook_add = '''
   nnoremap <Leader>f :Files<CR>
   nnoremap <Leader>g :Ag<CR>
 '''
+
+[[plugins]]
+repo = 'pbogut/fzf-mru.vim'
+hook_add = '''
+  nnoremap <Leader>b :FZFMru<CR>
+'''
