@@ -157,7 +157,7 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'airblade/vim-rooter'
 hook_add =  '''
-  let g:rooter_patterns = ['compile_flags.txt', 'CMakeLists.txt', '.git/']
+  let g:rooter_patterns = ['rosinstall', '.rosinstall', 'compile_flags.txt', 'CMakeLists.txt', '.git/']
 '''
 
 [[plugins]]
