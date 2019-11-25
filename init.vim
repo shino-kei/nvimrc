@@ -17,11 +17,14 @@ set incsearch
 set noswapfile
 
 let mapleader = "\<Space>"
+nnoremap Q <Nop> 
 inoremap <silent> jj <ESC>
 inoremap <silent> AA <ESC>A
+inoremap <silent> ;; <C-o>A;
 
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
+nnoremap <Leader>t gt
 nnoremap <Leader>; A;<ESC>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -33,6 +36,8 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 noremap ; :
 noremap : ;
 
+" terminal setting
+tnoremap <silent> <ESC> <C-\><C-n>
 
 if has('persistent_undo')
   set undodir=~/.cache/undo
@@ -64,4 +69,8 @@ filetype plugin indent on
 syntax enable
 
 :command UP UpdateRemotePlugins
+
+" テキスト背景色
+au ColorScheme * hi Normal ctermbg=none
+hi Search ctermfg=red
 
