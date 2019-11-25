@@ -1,0 +1,46 @@
+snippet launch 
+abbr launch tag
+	<launch>
+		${1:target}
+	</launch>
+
+snippet include 
+abbr include tag
+	<include file="$(find ${1:pkg-name})/${2:path.launch}"/>
+
+snippet node
+abbr node tag
+	<node pkg="${1}" type="${2}" name="${3}" args="${4}"/>
+
+snippet node2
+abbr node tag 
+	<node pkg="${1}" type="${2}" name="${3}" args="${4}">
+		${5}
+	</node>
+
+snippet param 
+abbr param tag
+	<param name="${1}" value="${2}" />
+
+
+snippet arg 
+abbr Arg tag
+	<arg name="${1}" default="${2}"/>
+
+snippet rosparam 
+abbr Rosparam load tag
+	<rosparam command="load" file="$(find ${1:pkg-name})/${2:path.yaml}"/>
+
+
+
+snippet find 
+abbr Find package" 
+	$(find ${0:pkg-name})$1
+
+snippet remap 
+abbr Remap topics
+	<remap from="${1:from_topic}" to="${2:to_topic}"/>
+
+snippet sim 
+abbr Set use_sim_time flag
+	<param name="/use_sim_time" value="true"/>
