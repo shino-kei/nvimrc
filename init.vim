@@ -16,6 +16,9 @@ set incsearch
 " スワップファイルを作らない
 set noswapfile
 
+" don't send wheelscroll event to tmux
+set mouse=a
+
 let mapleader = "\<Space>"
 nnoremap Q <Nop> 
 inoremap <silent> jj <ESC>
