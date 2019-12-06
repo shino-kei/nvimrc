@@ -39,8 +39,12 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 noremap ; :
 noremap : ;
 
+" visual mode setting
+vnoremap < <gv
+vnoremap > >gv
+
 " terminal setting
-tnoremap <silent> <ESC> <C-\><C-n>
+" tnoremap <silent> <ESC> <C-\><C-n>
 
 if has('persistent_undo')
   set undodir=~/.cache/undo
