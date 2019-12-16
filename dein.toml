@@ -251,8 +251,10 @@ hook_add = '''
 
 [[plugins]]
 repo = 'bennyyip/vim-yapf'
+depends = ['google/yapf']
 hook_add = '''
-  autocmd FileType python YapfAutoEnable
+  " autocmd FileType python YapfAutoEnable
+  autocmd FileType python setlocal equalprg=yapf
 '''
 
 [[plugins]]
