@@ -12,3 +12,7 @@ abbr python initial script
   if __name__ == '__main__':
     main()
   
+  
+snippet ipython_terminal
+abbr call ipython interpreter
+  from IPython.terminal import embed; ipshell=embed.InteractiveShellEmbed(config=embed.load_default_config())(local_ns=locals())

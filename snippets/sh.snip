@@ -1,0 +1,7 @@
+snippet arg_check
+abbr check num of args
+  if [ $# -ne ${1} ]; then
+    echo "the number of arguments is $#" 1>&2
+    echo "please input ${1} arguments" 1>&2
+    exit 1
+  fi
