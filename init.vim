@@ -81,3 +81,4 @@ syntax enable
 au ColorScheme * hi Normal ctermbg=none
 hi Search ctermfg=red
 
+autocmd Filetype * set formatoptions-=ro
