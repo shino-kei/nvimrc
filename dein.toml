@@ -10,9 +10,7 @@ repo = 'Townk/vim-autoclose'
 
 [[plugins]]
 repo = 'joshdick/onedark.vim'
-hook_add = '''
-  colorscheme onedark
-'''
+
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
