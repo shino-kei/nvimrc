@@ -173,9 +173,6 @@ hook_add = '''
 
 '''
 
-# clipboard plugin
-[[plugins]]
-repo = 'christoomey/vim-system-copy'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
