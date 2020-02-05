@@ -284,3 +284,6 @@ repo = 'pbogut/fzf-mru.vim'
 hook_add = '''
   nnoremap <Leader>b :FZFMru<CR>
 '''
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
