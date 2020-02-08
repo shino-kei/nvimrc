@@ -43,6 +43,12 @@ noremap : ;
 vnoremap < <gv
 vnoremap > >gv
 
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+if executable('atcoder-tools')
+  command! AtcoderTest !g++ main.cpp && atcoder-tools test
+endif
+
 " terminal setting
 " tnoremap <silent> <ESC> <C-\><C-n>
 
