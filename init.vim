@@ -43,6 +43,12 @@ noremap : ;
 vnoremap < <gv
 vnoremap > >gv
 
+nmap n nzz 
+nmap N Nzz 
+nmap * *zz 
+nmap # #zz 
+nmap g* g*zz 
+nmap g# g#zz
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 if executable('atcoder-tools')
@@ -108,3 +114,5 @@ autocmd FocusLost * execute('hi EndOfBuffer '.g:InactiveBackGround)
 augroup end
 
 colorscheme onedark
+hi Search ctermbg=Cyan
+hi Search ctermfg=White
