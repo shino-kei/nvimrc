@@ -55,6 +55,10 @@ if executable('atcoder-tools')
   command! AtcoderTest !g++ main.cpp && atcoder-tools test
 endif
 
+if executable('oj')
+  command! OjTest !g++ main.cpp && oj test
+endif
+
 " terminal setting
 " tnoremap <silent> <ESC> <C-\><C-n>
 
