@@ -284,3 +284,11 @@ hook_add = '''
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+hook_add = '''
+  map <silent>sa <Plug>(operator-surround-append)
+  map <silent>sd <Plug>(operator-surround-delete)
+  map <silent>sr <Plug>(operator-surround-replace)
+'''
