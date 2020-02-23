@@ -24,6 +24,7 @@ nnoremap Q <Nop>
 inoremap <silent> jj <ESC>
 inoremap <silent> AA <ESC>A
 inoremap <silent> ;; <C-o>A;
+inoremap <c-j> <esc>
 
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
