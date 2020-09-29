@@ -78,6 +78,10 @@ hook_add = '''
         \ 'cpp': ['clangd'],
         \ 'python': ['pyls'],
     \ }
+    let g:LanguageClient_rootMarkers = {                                      
+           \ 'cpp': ['compile_commands.json', 'compile_flags.txt']                                          
+           \ }  
+
     " not stop completion $ & /
     let g:LanguageClient_loadSettings = 1
 
@@ -152,11 +156,11 @@ depends = ['deoplete.nvim']
 
 
 
-[[plugins]]
-repo = 'airblade/vim-rooter'
-hook_add =  '''
-  let g:rooter_patterns = ['rosinstall', '.rosinstall', 'compile_flags.txt', 'CMakeLists.txt', '.git/']
-'''
+# [[plugins]]
+# repo = 'airblade/vim-rooter'
+# hook_add =  '''
+#   let g:rooter_patterns = ['compile_commands.json', 'compile_flags.txt', 'CMakeLists.txt', '.git/']
+# '''
 
 [[plugins]]
 repo = "vim-scripts/DoxygenToolkit.vim"
