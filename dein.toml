@@ -239,6 +239,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'taketwo/vim-ros'
+hook_add = '''
+  autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml
+'''
 
 [[plugins]]
 repo = 'wordijp/NeoDebug'
