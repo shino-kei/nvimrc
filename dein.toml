@@ -321,3 +321,10 @@ repo = 'kana/vim-textobj-user'
 repo = 'tkhren/vim-textobj-numeral'
 depends = ['kana/vim-textobj-user']
 
+[[plugins]]
+repo = 'voldikss/vim-translator'
+hook_add = '''
+  let g:translator_target_lang = 'ja'
+  let g:translator_default_engines = ['google']
+'''
+
