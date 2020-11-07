@@ -23,3 +23,17 @@ abbr argparse template
   parser.add_argument('input')
   parser.add_argument('--view', action="store_true")
   args = parser.parse_args()
+
+
+snippet subscriber
+abbr ros subscriber
+  self.${1:name}_sub = rospy.Subscriber("~${2:topic}", ${3:type}, ${4:callback})
+
+
+snippet publisher
+abbr ros publisher
+  self.${1:name}_pub = rospy.Publisher("~${2:topic}", ${3:type}, ${4:queue_size})
+
+snippet param
+abbr get rosparam
+  ${1:var} = rospy.get_param("${2:name}", ${3:default})

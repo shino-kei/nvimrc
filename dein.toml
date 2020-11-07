@@ -61,16 +61,9 @@ hook_post_source = '''
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-anzu'
-hook_add = '''
-  source ~/.config/nvim/plugins/anzu.vim
-'''
-
-[[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
 rev = 'next'
 build = 'bash install.sh'
-depends = ['deoplete.nvim']
 hook_add = '''
     let s:node = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CONFIG_HOME
     let g:LanguageClient_serverCommands = {
@@ -155,7 +148,7 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'airblade/vim-rooter'
 hook_add =  '''
-  let g:rooter_patterns = ['rosinstall', '.rosinstall', 'compile_flags.txt', 'CMakeLists.txt', '.git/']
+  let g:rooter_patterns = ['compile_flags.txt', 'compile_commands.json', 'CMakeLists.txt', '.git/']
 '''
 
 [[plugins]]
@@ -235,6 +228,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'taketwo/vim-ros'
+hook_add='''
+  au BufNewFile,BufRead *.launch setf xml.launch
+'''
 
 [[plugins]]
 repo = 'wordijp/NeoDebug'
