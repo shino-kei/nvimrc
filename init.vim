@@ -9,6 +9,9 @@ set hls
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 set autoread
 
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+
 " search settings 
 set ignorecase
 set smartcase
