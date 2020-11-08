@@ -71,6 +71,10 @@ hook_add = '''
         \ 'cpp': ['clangd'],
         \ 'python': ['pyls'],
     \ }
+    let g:LanguageClient_rootMarkers = {                                      
+           \ 'cpp': ['compile_commands.json', 'compile_flags.txt']                                          
+           \ }  
+
     " not stop completion $ & /
     let g:LanguageClient_loadSettings = 1
 
@@ -143,13 +147,11 @@ repo = 'Shougo/neoinclude.vim'
 on_ft = ['c', 'cpp']
 depends = ['deoplete.nvim']
 
-
-
-[[plugins]]
-repo = 'airblade/vim-rooter'
-hook_add =  '''
-  let g:rooter_patterns = ['compile_flags.txt', 'compile_commands.json', 'CMakeLists.txt', '.git/']
-'''
+# [[plugins]]
+# repo = 'airblade/vim-rooter'
+# hook_add =  '''
+#   let g:rooter_patterns = ['compile_commands.json', 'compile_flags.txt', 'CMakeLists.txt', '.git/']
+# '''
 
 [[plugins]]
 repo = "vim-scripts/DoxygenToolkit.vim"
@@ -228,8 +230,8 @@ hook_add = '''
 
 [[plugins]]
 repo = 'taketwo/vim-ros'
-hook_add='''
-  au BufNewFile,BufRead *.launch setf xml.launch
+hook_add = '''
+  autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml
 '''
 
 [[plugins]]

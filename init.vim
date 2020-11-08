@@ -36,7 +36,7 @@ nnoremap <Leader>; A;<ESC>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>m :w<CR>:make<CR>
-nnoremap <Leader>r :QuickRun<CR>
+nnoremap <Leader>r :w<CR>:QuickRun<CR>
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
 " replace ';' and ':'
