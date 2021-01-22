@@ -29,6 +29,9 @@ inoremap <silent> AA <ESC>A
 inoremap <silent> ;; <C-o>A;
 inoremap <c-j> <esc>
 
+" toggle 0 and ^
+noremap <expr> 0 getline('.')[0 : col('.') - 2] =~# '^\s\+$' ? '0' : '^'
+
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>t gt
