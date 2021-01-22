@@ -50,10 +50,10 @@ noremap : ;
 vnoremap < <gv
 vnoremap > >gv
 
-nmap n nzz 
-nmap N Nzz 
-nmap * *zz 
-nmap # #zz 
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 if executable('atcoder-tools')
