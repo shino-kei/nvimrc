@@ -56,6 +56,17 @@ nmap * *zz
 nmap # #zz
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
+" in command line mode
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+set wildmenu
+set wildmode=longest:full,full
+
 if executable('atcoder-tools')
   command! AtcoderTest !g++ main.cpp && atcoder-tools test
 endif
