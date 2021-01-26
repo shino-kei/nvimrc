@@ -4,6 +4,10 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
+
+hook_source = '''
+  let g:ale_disable_lsp = 1
+'''
 hook_add = '''
   source ~/.config/nvim/plugins/coc.nvim
 '''
@@ -230,10 +234,10 @@ hook_add = '''
     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
     let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
     let g:ale_linters = {
-        \   'c' : ['clangd'],
-        \   'cpp' : ['clangd'],
-        \   'python' : ['flake8'],
-    \}
+       \   'c' : ['clangd'],
+       \   'cpp' : ['clangd'],
+       \   'python' : ['flake8'],
+     \}
 '''
 
 [[plugins]]
