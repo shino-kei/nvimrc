@@ -5,9 +5,6 @@ repo = 'Shougo/dein.vim'
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 
-hook_source = '''
-  let g:ale_disable_lsp = 1
-'''
 hook_add = '''
   source ~/.config/nvim/plugins/coc.nvim
 '''
@@ -220,6 +217,9 @@ let g:lightline.component_type = {
 # syntax linter 
 [[plugins]]
 repo = 'w0rp/ale'
+hook_source = '''
+  let g:ale_disable_lsp = 1
+'''
 hook_add = '''
     " シンボルカラムを表示したままにする
     let g:ale_sign_column_always = 1
