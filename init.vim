@@ -19,6 +19,9 @@ set incsearch
 " スワップファイルを作らない
 set noswapfile
 
+" increment/ decrement hex and alphabet
+set nf=alpha,hex
+
 " don't send wheelscroll event to tmux
 set mouse=a
 
