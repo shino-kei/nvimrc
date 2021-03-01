@@ -37,3 +37,19 @@ abbr ros publisher
 snippet param
 abbr get rosparam
   ${1:var} = rospy.get_param("${2:name}", ${3:default})
+
+
+snippet argparse
+abbr parse commandline args
+  import argparse
+  parser = argparse.ArgumentParser()
+  parser.add_argument("${1:arg}")
+  args = parser.parse_args()
+
+snippet load_yaml
+abbr load yaml file
+  import yaml
+  conf = "${1:file}"
+  with open(conf) as f:
+      topics = yaml.safe_load(f)
+

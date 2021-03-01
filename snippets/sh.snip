@@ -5,3 +5,21 @@ abbr check num of args
     echo "please input ${1} arguments" 1>&2
     exit 1
   fi
+
+snippet loop_dir
+abbr do action with directory
+  while read -d $'\0' file; do
+      echo $file
+  done < <(find ./bin -mindepth 1 -maxdepth 1 -print0)
+
+
+snippet     command_check
+abbr        check command exists
+  if type ${1:commmand} > /dev/null 2>&1; then 
+      echo command exist!
+  else                                 
+      echo no command
+      exit 1
+  fi
+
+

@@ -54,3 +54,7 @@ abbr group tag
 snippet tf
 abbr static_transform_publisher
   <node pkg="tf2_ros" type="static_transform_publisher" name="${1:node_name}" args="0 0 0 0 0 0 1 ${2:parent_frame} ${3:child_frame}" />
+
+snippet gdb_debug
+abbr debug with GDB
+   launch-prefix="gnome-terminal -x gdb --args"
