@@ -226,7 +226,7 @@ hook_add = '''
     " 保存時に整形してくれる
     let g:ale_fix_on_save = 1
     " 補完してくれる
-    let g:ale_completion_enabled = 1
+    " let g:ale_completion_enabled = 1
     " エラー行に表示するマーク
     let g:ale_sign_error = '⨉'
     let g:ale_sign_warning = '⚠'
@@ -340,3 +340,10 @@ hook_add = '''
   let g:translator_default_engines = ['google']
 '''
 
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+hook_add = '''
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 0
+'''

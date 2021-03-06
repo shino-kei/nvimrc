@@ -33,3 +33,15 @@ abbr    commpetition
   int main() {
     return 0;
   }
+
+snippet param
+abbr rosparam template
+  ${1:nh}.param<${2:double}>("${3:param_name}", ${4:val}, ${5:default_val});
+
+snippet pub
+abbr ros topic publisher
+  ${1:pub} = ${2:nh}.advertise<${3:type}>("${4:topic}", ${5:10});
+
+snippet sub
+abbr ROS Subscriber
+  ros::Subscriber ${1:sub} = ${2:nh}.subscribe("${3:topic}", ${4:10}, ${5:callback});
