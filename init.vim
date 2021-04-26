@@ -1,5 +1,6 @@
 set number
 set autoindent
+set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -39,11 +40,16 @@ nnoremap <Leader>o :only<CR>
 nnoremap <Leader>n :noh<CR>
 nnoremap <Leader>t gt
 nnoremap <Leader>; A;<ESC>
-nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>m :w<CR>:make<CR>
 nnoremap <Leader>r :w<CR>:QuickRun<CR>
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
+
+if exists('g:vscode')
+  nnoremap <silent> <Leader>w <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
+else 
+  nnoremap <Leader>w :w<CR>
+endif
 
 " replace ';' and ':'
 noremap ; :
@@ -119,6 +125,7 @@ hi Search ctermfg=red
 autocmd Filetype * set formatoptions-=ro
 
 let g:InactiveBackGround = 'ctermbg=240'
+
 
 "Neovim自体からフォーカスを外したりした際の切替設定
 "(フォーカスした時の設定はcolorschemeに合わせて変更）
