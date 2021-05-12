@@ -77,7 +77,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 if executable('atcoder-tools')
-  command! AtcoderTest !g++ main.cpp && atcoder-tools test
+  command! AtcoderTest !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -O2 main.cpp && atcoder-tools test
 endif
 
 if executable('oj')
