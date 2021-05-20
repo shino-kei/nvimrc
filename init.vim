@@ -1,8 +1,6 @@
 set number
 set autoindent
 set smartindent
-set tabstop=2
-set shiftwidth=2
 set expandtab
 set splitright
 set clipboard=unnamed
@@ -12,6 +10,15 @@ set autoread
 
 set encoding=utf-8
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
+
+" indent settings
+set tabstop=2
+set shiftwidth=2
+if has("autocmd")
+  filetype plugin on
+  filetype indent on
+  autocmd FileType markdown setlocal sw=4 sts=4 ts=4 et
+endif
 
 " search settings 
 set ignorecase
