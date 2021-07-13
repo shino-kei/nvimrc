@@ -50,7 +50,6 @@ nnoremap <Leader>; A;<ESC>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>m :w<CR>:make<CR>
 nnoremap <Leader>r :w<CR>:QuickRun<CR>
-autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
 if exists('g:vscode')
   nnoremap <silent> <Leader>w <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
