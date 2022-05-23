@@ -4,11 +4,10 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
-
+depends = 'Shougo/neosnippet.vim'
 hook_add = '''
   source ~/.config/nvim/plugins/coc.nvim
 '''
-
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
@@ -178,9 +177,6 @@ hook_add = '''
 '''
 
 
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
 # status bar color settings 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -269,7 +265,6 @@ repo = 'heavenshell/vim-pydocstring'
 repo = 'junegunn/fzf'
 build = './install --all'
  
-###fzf.vim
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 hook_add = '''
@@ -282,15 +277,35 @@ hook_add = '''
         \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
         \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
         \                 <bang>0)
-  " nnoremap <Leader>f :Files<CR>
-  " nnoremap <Leader>g :Ag<CR>
+
+  command! FZFMru call fzf#run({
+  \ 'source':  reverse(s:all_files()),
+  \ 'sink':    'edit',
+  \ 'options': '-m -x +s',
+  \ 'down':    '40%' })
+
+  function! s:all_files()
+    return extend(
+    \ filter(copy(v:oldfiles),
+    \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
+    \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+  endfunction
+  nnoremap <Leader>fm :History<CR>
+
+
+  "gnnoremap <Leader>f :Files<CR>
+  if executable('rg')
+    nnoremap <Leader>g :Rg<CR>
+  elseif executable('ag') 
+    nnoremap <Leader>g :Ag<CR>
+  endif
 '''
 
-[[plugins]]
-repo = 'pbogut/fzf-mru.vim'
-hook_add = '''
-  " nnoremap <Leader>b :FZFMru<CR>
-'''
+# [[plugins]]
+# repo = 'pbogut/fzf-mru.vim'
+# hook_add = '''
+#   " nnoremap <Leader>b :FZFMru<CR>
+# '''
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
@@ -303,35 +318,35 @@ hook_add = '''
   map <silent>sr <Plug>(operator-surround-replace)
 '''
 
-[[plugins]]
-repo = 'Yggdroot/LeaderF'
-build = 'bash install.sh'
+# [[plugins]]
+# repo = 'Yggdroot/LeaderF'
+# build = 'bash install.sh'
+# 
+# hook_add = '''
+# " let g:Lf_HideHelp = 1
+# let g:Lf_UseCache = 1
+# " let g:Lf_UseVersionControlTool = 0
+# let g:Lf_IgnoreCurrentBufferName = 1
+# let g:Lf_ShowDevIcons = 0
+# " --- popup mode
+# let g:Lf_WindowPosition = 'popup'
+# let g:Lf_PreviewInPopup = 1
+# let g:Lf_StlSeparator = { 'left': "", 'right': "", 'font': "" }
+# let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+# 
+# let g:Lf_ShortcutF = "<leader>ff"
+# noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+# noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+# noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+# 
+# '''
 
-hook_add = '''
-" let g:Lf_HideHelp = 1
-let g:Lf_UseCache = 1
-" let g:Lf_UseVersionControlTool = 0
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_ShowDevIcons = 0
-" --- popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "", 'right': "", 'font': "" }
-let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-
-let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-
-'''
-
-[[plugins]]
-repo = 'kana/vim-textobj-user'
-
-[[plugins]]
-repo = 'tkhren/vim-textobj-numeral'
-depends = ['kana/vim-textobj-user']
+# [[plugins]]
+# repo = 'kana/vim-textobj-user'
+# 
+# [[plugins]]
+# repo = 'tkhren/vim-textobj-numeral'
+# depends = ['kana/vim-textobj-user']
 
 [[plugins]]
 repo = 'voldikss/vim-translator'
@@ -345,7 +360,29 @@ hook_add = '''
 repo = 'plasticboy/vim-markdown'
 hook_add = '''
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_level = 0
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 1
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_override_foldtext = 0
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  let g:neosnippet#snippets_directory='~/.nvim/snippets'
+'''
+# on_i  = 1
+on_event = 'InsertEnter'
+# on_ft = ['snippet']
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'

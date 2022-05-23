@@ -53,8 +53,13 @@ nnoremap <Leader>r :w<CR>:QuickRun<CR>
 
 if exists('g:vscode')
   nnoremap <silent> <Leader>w <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
+  nnoremap k gk
+  nnoremap gk k
+  nnoremap j gj
+  nnoremap gj j
 else 
   nnoremap <Leader>w :w<CR>
+  set ambiwidth=single
 endif
 
 " replace ';' and ':'
@@ -102,6 +107,7 @@ endif
 let s:cache_home = expand('~/.cache')
 let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let g:dein#auto_recache = 1
 if !isdirectory(s:dein_repo_dir)
   call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
 endif
@@ -126,12 +132,14 @@ syntax enable
 
 " テキスト背景色
 au ColorScheme * hi Normal ctermbg=none
-hi Search ctermfg=red
 
 autocmd Filetype * set formatoptions-=ro
 
 let g:InactiveBackGround = 'ctermbg=240'
 
+colorscheme onedark
+hi Search ctermbg=Cyan
+hi Search ctermfg=White
 
 "Neovim自体からフォーカスを外したりした際の切替設定
 "(フォーカスした時の設定はcolorschemeに合わせて変更）
@@ -149,6 +157,3 @@ autocmd FocusLost * execute('hi SpecialKey '.g:InactiveBackGround)
 autocmd FocusLost * execute('hi EndOfBuffer '.g:InactiveBackGround)
 augroup end
 
-colorscheme onedark
-hi Search ctermbg=Cyan
-hi Search ctermfg=White
