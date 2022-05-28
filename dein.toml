@@ -278,18 +278,6 @@ hook_add = '''
         \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
         \                 <bang>0)
 
-  command! FZFMru call fzf#run({
-  \ 'source':  reverse(s:all_files()),
-  \ 'sink':    'edit',
-  \ 'options': '-m -x +s',
-  \ 'down':    '40%' })
-
-  function! s:all_files()
-    return extend(
-    \ filter(copy(v:oldfiles),
-    \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-    \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
-  endfunction
   nnoremap <Leader>fm :History<CR>
 
 
@@ -369,7 +357,7 @@ let g:vim_markdown_override_foldtext = 0
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
-hook_source = '''
+hook_add = '''
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
