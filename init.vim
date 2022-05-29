@@ -37,7 +37,7 @@ let mapleader = "\<Space>"
 nnoremap Q <Nop> 
 inoremap <silent> jj <ESC>
 inoremap <silent> AA <ESC>A
-inoremap <silent> ;; <C-o>A;
+inoremap <silent> ;; <C-o>A;<ESC>
 inoremap <c-j> <esc>
 
 " toggle 0 and ^
