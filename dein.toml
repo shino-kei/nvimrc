@@ -351,8 +351,11 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_level = 0
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 1
-let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal = 1
 let g:vim_markdown_override_foldtext = 0
+
+" substitute 'syntax' character to space
+set conceallevel=1
 '''
 
 [[plugins]]
@@ -361,9 +364,9 @@ hook_add = '''
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+  " if has('conceal')
+  "   set conceallevel=2 concealcursor=niv
+  " endif
   let g:neosnippet#enable_snipmate_compatibility = 1
   let g:neosnippet#snippets_directory='~/.nvim/snippets'
 '''
