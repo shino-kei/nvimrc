@@ -32,73 +32,6 @@ hook_add = '''
   source ~/.config/nvim/plugins/fugitive.vim
 '''
 
-# [[plugins]]
-# repo = 'Shougo/denite.nvim'
-# hook_add = '''
-#   nnoremap [denite] <Nop>
-#   nmap <Leader>d [denite]
-#   source ~/.config/nvim/plugins/denite.vim
-# '''
-# hook_post_source = '''
-#   call denite#custom#option('default', 'prompt', '>')
-#   call denite#custom#option('_', 'highlight_matched_range', 'None')
-#   call denite#custom#option('_', 'highlight_matched_char', 'None')
-#
-#   " denite/insert モードのときは，C- で移動できるようにする
-#   " call denite#custom#map('insert', "<Tab>", '<denite:move_to_next_line>')
-#   " call denite#custom#map('insert', "<S-Tab>", '<denite:move_to_previous_line>')
-#
-#   " ノーマルモードで起動、jjでノーマルへ
-#   call denite#custom#option('default', {'mode': 'normal'})
-#   call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-#
-#
-#   " tabopen や vsplit のキーバインドを割り当て
-#   " call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-#   " call denite#custom#map('insert', "<C-s>", '<denite:do_action:vsplit>')
-#   " call denite#custom#map('normal', "s", '<denite:do_action:vsplit>')
-#
-#   " grepでagを使用するように設定
-#   " call denite#custom#var('grep', 'command', ['pt', '--follow', '--nogroup', '--nocolor', '--hidden'])
-#   call denite#custom#var('grep', 'command', ['ag'])
-#   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
-#   call denite#custom#var('grep', 'recursive_opts', [])
-#
-#   call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-#
-# '''
-
-# [[plugins]]
-# repo = 'autozimu/LanguageClient-neovim'
-# rev = 'next'
-# build = 'bash install.sh'
-# hook_add = '''
-#     let s:node = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CONFIG_HOME
-#     let g:LanguageClient_serverCommands = {
-#        \ 'c': ['clangd'],
-#        \ 'cpp': ['clangd'],
-#        \ 'python': ['pyls'],
-#    \ }
-#     let g:LanguageClient_rootMarkers = {                                      
-#           \ 'cpp': ['compile_commands.json', 'compile_flags.txt']                                          
-#           \ }  
-#
-#     " not stop completion $ & /
-#     let g:LanguageClient_loadSettings = 1
-#
-#     " stop linter
-#     let g:LanguageClient_diagnosticsEnable = 0
-#
-#     set hidden
-#     set signcolumn=yes
-#     " let g:LanguageClient_hoverPreview = "Never"
-#     nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-#     " Or map each action separately
-#     nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-#     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-#     nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-# '''
-
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
@@ -149,17 +82,6 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]] # toml syntax
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
-
-# [[plugins]]
-# repo = 'Shougo/neoinclude.vim'
-# on_ft = ['c', 'cpp']
-# depends = ['deoplete.nvim']
-
-# [[plugins]]
-# repo = 'airblade/vim-rooter'
-# hook_add =  '''
-#   let g:rooter_patterns = ['compile_commands.json', 'compile_flags.txt', 'CMakeLists.txt', '.git/']
-# '''
 
 [[plugins]]
 repo = "vim-scripts/DoxygenToolkit.vim"
@@ -351,8 +273,11 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_level = 0
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 1
-let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal = 1
 let g:vim_markdown_override_foldtext = 0
+
+" substitute 'syntax' character to space
+set conceallevel=1
 '''
 
 [[plugins]]
@@ -361,9 +286,9 @@ hook_add = '''
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+  " if has('conceal')
+  "   set conceallevel=2 concealcursor=niv
+  " endif
   let g:neosnippet#enable_snipmate_compatibility = 1
   let g:neosnippet#snippets_directory='~/.nvim/snippets'
 '''
