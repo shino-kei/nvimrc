@@ -90,6 +90,8 @@ set wildmode=longest:full,full
 if executable('atcoder-tools')
   command! AtcoderTest !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -O2 main.cpp && atcoder-tools test
   command! AtcoderDebug !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -DLOCAL -O2 main.cpp && atcoder-tools test
+
+  nnoremap <Leader>at :AtcoderTest<CR>
 endif
 
 if executable('oj')
