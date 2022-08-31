@@ -61,9 +61,9 @@ hook_add = '''
   nnoremap <silent> <C-q> :QuickRun<CR>
 '''
 
-[[plugins]]
-repo = 'cohama/lexima.vim'
-on_i = 1
+# [[plugins]]
+# repo = 'cohama/lexima.vim'
+# on_i = 1
 
 [[plugins]]
 repo = 'tyru/caw.vim'
