@@ -12,8 +12,8 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-endwise'
 
-[[plugins]]
-repo = 'Townk/vim-autoclose'
+# [[plugins]]
+# repo = 'Townk/vim-autoclose'
 
 
 [[plugins]]
@@ -61,9 +61,9 @@ hook_add = '''
   nnoremap <silent> <C-q> :QuickRun<CR>
 '''
 
-[[plugins]]
-repo = 'cohama/lexima.vim'
-on_i = 1
+# [[plugins]]
+# repo = 'cohama/lexima.vim'
+# on_i = 1
 
 [[plugins]]
 repo = 'tyru/caw.vim'
@@ -277,7 +277,7 @@ let g:vim_markdown_auto_insert_bullets = 1
 let g:vim_markdown_override_foldtext = 0
 
 " substitute 'syntax' character to space
-set conceallevel=1
+" set conceallevel=1
 '''
 
 [[plugins]]
