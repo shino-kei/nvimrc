@@ -148,3 +148,5 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-cmake', 'coc-neosnippet', 'coc-sh', 'coc-markdownlint']
 
 autocmd BufWritePost *.md CocCommand markdownlint.fixAll
+
+autocmd ColorScheme * hi CocMenuSel ctermbg=darkblue guibg=#13354A
