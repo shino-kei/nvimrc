@@ -143,7 +143,7 @@ let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-cmake', 'coc-neo
 autocmd BufWritePost *.md CocCommand markdownlint.fixAll
 
 " ポップアップメニューの選択部の色
-autocmd ColorScheme * hi CocMenuSel ctermbg=darkblue guibg=#13354A
+autocmd ColorScheme * hi CocMenuSel ctermbg=22 guibg=#13354A
 " 入力文字にマッチした部分の色
 autocmd ColorScheme * hi CocSearch ctermfg=red
 " 補完ソースの短縮名の色
