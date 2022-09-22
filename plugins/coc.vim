@@ -142,6 +142,9 @@ let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-cmake', 'coc-neo
 
 autocmd BufWritePost *.md CocCommand markdownlint.fixAll
 
+" markdown 編集中はビルトインの単語補完を無効化する
+autocmd FileType markdown let b:coc_disabled_sources = ['around', 'buffer']
+
 " ポップアップメニューの選択部の色
 autocmd ColorScheme * hi CocMenuSel ctermbg=22 guibg=#13354A
 " 入力文字にマッチした部分の色
