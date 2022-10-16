@@ -29,27 +29,20 @@ endif
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion.
-" if has('nvim')
-"   inoremap <silent><expr> <c-space> coc#refresh()
-" else
-"   inoremap <silent><expr> <c-@> coc#refresh()
-" endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -145,6 +138,18 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-cmake', 'coc-neosnippet', 'coc-sh', 'coc-markdownlint']
+let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-cmake', 'coc-neosnippet', 'coc-sh', 'coc-markdownlint', 'coc-pairs']
 
 autocmd BufWritePost *.md CocCommand markdownlint.fixAll
+
+" markdown 編集中はビルトインの単語補完を無効化する
+autocmd FileType markdown let b:coc_disabled_sources = ['around', 'buffer']
+
+" ポップアップメニューの選択部の色
+autocmd ColorScheme * hi CocMenuSel ctermbg=22 guibg=#13354A
+" 入力文字にマッチした部分の色
+autocmd ColorScheme * hi CocSearch ctermfg=red
+" 補完ソースの短縮名の色
+autocmd ColorScheme * hi CocPumShortcut ctermfg=yellow
+
+

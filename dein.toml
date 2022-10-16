@@ -6,7 +6,7 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 depends = 'Shougo/neosnippet.vim'
 hook_add = '''
-  source ~/.config/nvim/plugins/coc.nvim
+  source ~/.config/nvim/plugins/coc.vim
 '''
 
 [[plugins]]
