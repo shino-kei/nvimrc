@@ -187,36 +187,31 @@ repo = 'heavenshell/vim-pydocstring'
 repo = 'junegunn/fzf'
 build = './install --all'
  
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-hook_add = '''
-  " ファイル一覧を出すときにプレビュー表示
-  command! -bang -nargs=? -complete=dir Files
-        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-  command! -bang -nargs=* Ag
-        \ call fzf#vim#ag(<q-args>,
-        \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-        \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
-        \                 <bang>0)
-
-  nnoremap <Leader>fm :History<CR>
-
-
-  "gnnoremap <Leader>f :Files<CR>
-  if executable('rg')
-    nnoremap <Leader>g :Rg<CR>
-  elseif executable('ag') 
-    nnoremap <Leader>g :Ag<CR>
-  endif
-'''
-
 # [[plugins]]
-# repo = 'pbogut/fzf-mru.vim'
+# repo = 'junegunn/fzf.vim'
 # hook_add = '''
-#   " nnoremap <Leader>b :FZFMru<CR>
+#   " ファイル一覧を出すときにプレビュー表示
+#   command! -bang -nargs=? -complete=dir Files
+#        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+# 
+#   command! -bang -nargs=* Ag
+#        \ call fzf#vim#ag(<q-args>,
+#        \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+#        \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
+#        \                 <bang>0)
+# 
+#   nnoremap <Leader>fm :History<CR>
+# 
+# 
+#   "gnnoremap <Leader>f :Files<CR>
+#   if executable('rg')
+#     nnoremap <Leader>g :Rg<CR>
+#   elseif executable('ag') 
+#     nnoremap <Leader>g :Ag<CR>
+#   endif
 # '''
 
+ 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
 
@@ -227,36 +222,6 @@ hook_add = '''
   map <silent>sd <Plug>(operator-surround-delete)
   map <silent>sr <Plug>(operator-surround-replace)
 '''
-
-# [[plugins]]
-# repo = 'Yggdroot/LeaderF'
-# build = 'bash install.sh'
-# 
-# hook_add = '''
-# " let g:Lf_HideHelp = 1
-# let g:Lf_UseCache = 1
-# " let g:Lf_UseVersionControlTool = 0
-# let g:Lf_IgnoreCurrentBufferName = 1
-# let g:Lf_ShowDevIcons = 0
-# " --- popup mode
-# let g:Lf_WindowPosition = 'popup'
-# let g:Lf_PreviewInPopup = 1
-# let g:Lf_StlSeparator = { 'left': "", 'right': "", 'font': "" }
-# let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-# 
-# let g:Lf_ShortcutF = "<leader>ff"
-# noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-# noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-# noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-# 
-# '''
-
-# [[plugins]]
-# repo = 'kana/vim-textobj-user'
-# 
-# [[plugins]]
-# repo = 'tkhren/vim-textobj-numeral'
-# depends = ['kana/vim-textobj-user']
 
 [[plugins]]
 repo = 'voldikss/vim-translator'
