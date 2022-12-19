@@ -132,6 +132,9 @@ command! -nargs=0 Format :call CocAction('format')
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+autocmd FileType cpp let b:coc_pairs_disabled = ['<']
+autocmd FileType markdown let b:coc_pairs_disabled = ['`']
+
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
@@ -140,7 +143,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-cmake', 'coc-neosnippet', 'coc-sh', 'coc-markdownlint', 'coc-pairs']
+let g:coc_global_extensions = [ 'coc-pyright', 'coc-cmake', 'coc-neosnippet', 'coc-sh', 'coc-markdownlint', 'coc-pairs']
 
 autocmd BufWritePost *.md CocCommand markdownlint.fixAll
 
@@ -153,5 +156,6 @@ autocmd ColorScheme * hi CocMenuSel ctermbg=22 guibg=#13354A
 autocmd ColorScheme * hi CocSearch ctermfg=red
 " 補完ソースの短縮名の色
 autocmd ColorScheme * hi CocPumShortcut ctermfg=yellow
+
 
 
