@@ -64,6 +64,9 @@ keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
+keymap("i", "jj", "<ESC>", opts)
+keymap("i",  "AA",  "<ESC>A",  opts)
+keymap("i",  ";;",  "<C-o>A;<ESC>", opts);
 
 -- コンマの後に自動的にスペースを挿入
 keymap("i", ",", ",<Space>", opts)
