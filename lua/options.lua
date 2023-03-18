@@ -55,3 +55,25 @@ end
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+
+
+vim.cmd 'colorscheme onedark'
+vim.cmd([[
+  let g:InactiveBackGround = 'ctermbg=240'
+  hi Search ctermbg=Cyan
+  hi Search ctermfg=White
+  augroup ChangeBackGround
+    autocmd!
+    " フォーカスした時(colorscheme準拠に切替)
+    autocmd FocusGained * hi Normal ctermbg=235 " :hi Normalで取得した値
+    autocmd FocusGained * hi NonText ctermbg=235 " :hi NonTextで取得した値
+    autocmd FocusGained * hi SpecialKey ctermbg=235 " :hi SpecialKeyで取得した値
+    autocmd FocusGained * hi EndOfBuffer ctermbg=none " EndOfBufferの設定は恐らくclearなのでnoneを入れる
+    " フォーカスを外した時（フォーカスしていない時の背景色に切替)
+    autocmd FocusLost * hi Normal ctermbg=250 guibg=.g:InactiveBackGround" 
+    autocmd FocusLost * hi NonText ctermbg=250 guibg=.g:InactiveBackGround" 
+    autocmd FocusLost * hi SpecialKey ctermbg=250 guibg=.g:InactiveBackGround" 
+    autocmd FocusLost * hi EndOfBuffer ctermbg=none guibg=.g:InactiveBackGround"
+  augroup end
+]]) 
+
