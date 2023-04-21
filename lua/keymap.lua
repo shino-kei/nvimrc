@@ -95,7 +95,7 @@ keymap("n", "<Leader>w", ":w<Return>", opts)
 vim.cmd([[
 if executable('atcoder-tools')
   command! AtcoderTest !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -O2 main.cpp -I /Users/keisuke/workspace/atcoder/ac-library && atcoder-tools test
-  command! AtcoderDebug !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -DLOCAL -O2 main.cpp && atcoder-tools test
+  command! AtcoderDebug !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -DLOCAL -O0 -g3 main.cpp && atcoder-tools test
   nnoremap <Leader>at :AtcoderTest<CR>
   endif
   ]])
