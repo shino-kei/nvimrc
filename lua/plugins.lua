@@ -49,8 +49,67 @@ return require('packer').startup(function(use)
 
   use 'nvim-tree/nvim-web-devicons'
   use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons',  config=function()
-    require'bufferline'.setup { }
+    vim.g.lightline = {
+      enable = { statusline = 1, tabline = 0 }
+    }
+    vim.g.bufferline_show_unlisted = false
+
+    require'barbar'.setup{
+      icons = {
+        -- Configure the base icons on the bufferline.
+        -- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
+        buffer_index = false,
+        buffer_number = false,
+        button = '-',
+        -- Enables / disables diagnostic symbols
+        diagnostics = {
+          [vim.diagnostic.severity.ERROR] = {enabled = true, icon = 'ﬀ'},
+          [vim.diagnostic.severity.WARN] = {enabled = false},
+          [vim.diagnostic.severity.INFO] = {enabled = false},
+          [vim.diagnostic.severity.HINT] = {enabled = true},
+        },
+        gitsigns = {
+          added = {enabled = true, icon = '+'},
+          changed = {enabled = true, icon = '~'},
+          deleted = {enabled = true, icon = '-'},
+        },
+        filetype = {
+          -- Sets the icon's highlight group.
+          -- If false, will use nvim-web-devicons colors
+          custom_colors = false,
+
+          -- Requires `nvim-web-devicons` if `true`
+          enabled = true,
+        },
+        separator = {left = '▎', right = ''},
+
+        -- Configure the icons on the bufferline when modified or pinned.
+        -- Supports all the base icon options.
+        modified = {button = '●'},
+        pinned = {button = '!', filename = true, separator = {right = ''}},
+
+        -- Configure the icons on the bufferline based on the visibility of a buffer.
+        -- Supports all the base icon options, plus `modified` and `pinned`.
+        alternate = {filetype = {enabled = false}},
+        current = {buffer_index = true},
+        inactive = {button = '×'},
+        visible = {modified = {buffer_number = false}},
+      },
+    }
+
+    -- require'bufferline'.setup { }
   end}
+
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require("nvim-tree").setup()
+      vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+    end
+  }
 
 
   -- LSP settings
