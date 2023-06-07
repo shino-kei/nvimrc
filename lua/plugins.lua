@@ -52,7 +52,7 @@ return require('packer').startup(function(use)
     vim.g.lightline = {
       enable = { statusline = 1, tabline = 0 }
     }
-    vim.g.bufferline_show_unlisted = false
+    vim.g.bufferline_show_unlisted = true
 
     require'barbar'.setup{
       icons = {
