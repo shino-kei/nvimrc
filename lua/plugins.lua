@@ -184,7 +184,9 @@ return require('packer').startup(function(use)
       use 'osyo-manga/vim-precious'
       use 'Shougo/context_filetype.vim'
       use 'cespare/vim-toml'
-      use 'taketwo/vim-ros'
+      use {'taketwo/vim-ros',  config= function()
+        vim.cmd([[autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml]])  
+      end}
 
       use { 'voldikss/vim-translator',  config=function()
         vim.cmd([[let g:translator_target_lang = 'ja' ]])  
