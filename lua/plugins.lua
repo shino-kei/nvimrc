@@ -130,37 +130,17 @@ return require('packer').startup(function(use)
     use 'Shougo/neosnippet-snippets'
 
     -- telescope
-    use { 'nvim-telescope/telescope.nvim',  config=function()
-      vim.cmd[[
-      nnoremap <Leader>ff :Telescope find_files<CR>
-      nnoremap <Leader>fb :Telescope buffers<CR>
-      nnoremap <leader>fg :Telescope live_grep<CR>
-      nnoremap <leader>fm :Telescope oldfiles<CR>
-      ]]
-      local actions = require("telescope.actions")
-      require("telescope").setup{
-        defaults = {
-          mappings = {
-            i = {
-              ["<esc>"] = actions.close
-            },
-          },
-        },
-      }
+    use { 'ibhagwan/fzf-lua',
+      -- optional for icon support
+      requires = { 'nvim-tree/nvim-web-devicons' }, 
+      config = function()
+        vim.keymap.set('n', '<leader>fg', "<cmd>lua require('fzf-lua').live_grep()<CR>")
+        vim.keymap.set('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>")
+        vim.keymap.set('n', '<leader>fm', "<cmd>lua require('fzf-lua').oldfiles()<CR>")
+        vim.keymap.set('n', '<leader>fc', "<cmd>lua require('fzf-lua').builtin()<CR>")
 
-      require('telescope').setup {
-        extensions = {
-          fzf = {
-            fuzzy = true,                    -- false will only do exact matching
-            override_generic_sorter = true,  -- override the generic sorter
-            override_file_sorter = true,     -- override the file sorter
-            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-            -- the default case_mode is "smart_case"
-          }
-        }
-      }
-      -- require('telescope').load_extension('fzf')
-    end }
+      end
+    }
 
     -- status bar
     use {'itchyny/lightline.vim',  config=function()
@@ -173,26 +153,32 @@ return require('packer').startup(function(use)
       nmap <Leader>c <Plug>(caw:hatpos:toggle)
       vmap <Leader>c <Plug>(caw:hatpos:toggle)
       ]]) end}
-      use "kana/vim-operator-user"
-      use {'rhysd/vim-operator-surround',  config=function()
-        vim.cmd([[map <silent>sa <Plug>(operator-surround-append)]])
-        vim.cmd([[map <silent>sd <Plug>(operator-surround-delete)]])		  
-        vim.cmd([[map <silent>sr <Plug>(operator-surround-replace)]])
-      end}
 
-      -- others
-      use 'osyo-manga/vim-precious'
-      use 'Shougo/context_filetype.vim'
-      use 'cespare/vim-toml'
-      use {'taketwo/vim-ros',  config= function()
-        vim.cmd([[autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml]])  
-      end}
+    use "kana/vim-operator-user"
 
-      use { 'voldikss/vim-translator',  config=function()
-        vim.cmd([[let g:translator_target_lang = 'ja' ]])  
-        vim.cmd([[let g:translator_default_engines = ['google'] ]])
-      end}
+    use {'rhysd/vim-operator-surround',  config=function()
+      vim.cmd([[map <silent>sa <Plug>(operator-surround-append)]])
+      vim.cmd([[map <silent>sd <Plug>(operator-surround-delete)]])		  
+      vim.cmd([[map <silent>sr <Plug>(operator-surround-replace)]])
+    end}
 
+    -- others
+    use 'osyo-manga/vim-precious'
+    use 'Shougo/context_filetype.vim'
+    use 'cespare/vim-toml'
+    use {'taketwo/vim-ros',  config= function()
+      vim.cmd([[autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml]])  
+    end}
+
+    use { 'voldikss/vim-translator',  config=function()
+      vim.cmd([[let g:translator_target_lang = 'ja' ]])  
+      vim.cmd([[let g:translator_default_engines = ['google'] ]])
+    end}
+
+    use {
+      'notjedi/nvim-rooter.lua',
+      config = function() require'nvim-rooter'.setup() end
+      }
 
 
     end)
