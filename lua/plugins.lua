@@ -152,6 +152,11 @@ return require('packer').startup(function(use)
       -- FIXME
     end }
 
+    -- git 
+    use {'lewis6991/gitsigns.nvim',  config=function()
+      require('gitsigns').setup()
+    end }
+
     -- mappings
     use {'tyru/caw.vim',  config=function()
       vim.cmd([[
