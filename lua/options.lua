@@ -37,6 +37,7 @@ local options = {
 	wrap = false,
 	winblend = 0,
 	wildoptions = "pum",
+  wildmode = {"longest:full",  "full"},
 	pumblend = 5,
 	background = "dark",
 	scrolloff = 8,
