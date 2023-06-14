@@ -134,6 +134,11 @@ return require('packer').startup(function(use)
       -- optional for icon support
       requires = { 'nvim-tree/nvim-web-devicons' }, 
       config = function()
+        require('fzf-lua').setup{
+          winopts = {
+            fullscreen = true    
+          }, 
+        }
         vim.keymap.set('n', '<leader>fg', "<cmd>lua require('fzf-lua').live_grep()<CR>")
         vim.keymap.set('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>")
         vim.keymap.set('n', '<leader>fm', "<cmd>lua require('fzf-lua').oldfiles()<CR>")
