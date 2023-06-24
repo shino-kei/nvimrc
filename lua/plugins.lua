@@ -136,7 +136,10 @@ return require('packer').startup(function(use)
       config = function()
         require('fzf-lua').setup{
           winopts = {
-            fullscreen = true    
+            fullscreen = true, 
+            preview = {
+              layout = 'vertical' 
+            }
           }, 
         }
         vim.keymap.set('n', '<leader>fg', "<cmd>lua require('fzf-lua').live_grep()<CR>")
