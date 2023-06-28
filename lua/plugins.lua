@@ -175,9 +175,19 @@ return require('packer').startup(function(use)
       vim.cmd([[map <silent>sr <Plug>(operator-surround-replace)]])
     end}
 
-    -- others
+    -- appearence
     use 'osyo-manga/vim-precious'
     use 'Shougo/context_filetype.vim'
+
+    use {'lukas-reineke/indent-blankline.nvim', config=function()
+      require("indent_blankline").setup {
+        -- for example, context is off by default, use this to turn it on
+        show_current_context = true,
+        show_current_context_start = true,
+      }
+    end}
+
+    -- others
     use 'cespare/vim-toml'
     use {'taketwo/vim-ros',  config= function()
       vim.cmd([[autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml]])  
