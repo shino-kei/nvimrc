@@ -54,7 +54,22 @@ return require('packer').startup(function(use)
     }
     vim.g.bufferline_show_unlisted = true
 
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+    map('n', '<leader><Tab>', '<Cmd>BufferNext<CR>', opts)
+    map('n', '<leader>1', '<Cmd>BufferGoto 1<CR>', opts)
+    map('n', '<leader>2', '<Cmd>BufferGoto 2<CR>', opts)
+    map('n', '<leader>3', '<Cmd>BufferGoto 3<CR>', opts)
+    map('n', '<leader>4', '<Cmd>BufferGoto 4<CR>', opts)
+    map('n', '<leader>5', '<Cmd>BufferGoto 5<CR>', opts)
+    map('n', '<leader>6', '<Cmd>BufferGoto 6<CR>', opts)
+    map('n', '<leader>7', '<Cmd>BufferGoto 7<CR>', opts)
+    map('n', '<leader>8', '<Cmd>BufferGoto 8<CR>', opts)
+    map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>', opts)
+    map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
+
     require'barbar'.setup{
+      hide = {extensions = true, inactive = false},
       icons = {
         -- Configure the base icons on the bufferline.
         -- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
@@ -202,6 +217,7 @@ return require('packer').startup(function(use)
       'notjedi/nvim-rooter.lua',
       config = function() require'nvim-rooter'.setup() end
       }
+
 
 
     end)
