@@ -202,6 +202,11 @@ return require('packer').startup(function(use)
       }
     end}
 
+    use { 'nvim-treesitter/nvim-treesitter', run = function()
+        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+        ts_update()
+    end }
+
     -- others
     use 'cespare/vim-toml'
     use {'taketwo/vim-ros',  config= function()
