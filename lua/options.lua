@@ -3,7 +3,7 @@ local options = {
 	-- fileencoding = {"utf-8", "sjis"},
 	title = true,
 	backup = false,
-	clipboard = "unnamedplus",
+	-- clipboard = "unnamedplus",
 	cmdheight = 1,
 	completeopt = { "menuone", "noselect" },
 	conceallevel = 0,
@@ -52,6 +52,8 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+vim.cmd([[nnoremap + <Cmd>let @+ = @@<CR>]])
 
 vim.cmd("au FileType cpp set fo-=c fo-=r fo-=o")
 vim.cmd("set whichwrap+=<,>,[,],h,l")
