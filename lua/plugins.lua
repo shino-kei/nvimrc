@@ -136,7 +136,7 @@ return require('packer').startup(function(use)
   use {'Shougo/neosnippet.vim',  config=function()
     vim.cmd([[
     let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#snippets_directory='~/config/nvim/snippets'
+    let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
     imap <C-k> <Plug>(neosnippet_expand_or_jump)
     smap <C-k> <Plug>(neosnippet_expand_or_jump)
     xmap <C-k> <Plug>(neosnippet_expand_target)
