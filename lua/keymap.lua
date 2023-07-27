@@ -65,7 +65,7 @@ keymap("n", "Y", "y$", opts)
 keymap("n", "<Space>q", ":<C-u>q!<Return>", opts)
 
 -- ESC*2 でハイライトやめる
-keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
+keymap("n", "<Esc><Esc>", ":<C-u>:noh<Return>", opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
