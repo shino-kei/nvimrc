@@ -157,6 +157,7 @@ return require('packer').startup(function(use)
             }
           }, 
         }
+        vim.keymap.set('n', '<leader>g', "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>")
         vim.keymap.set('n', '<leader>fg', "<cmd>lua require('fzf-lua').live_grep()<CR>")
         vim.keymap.set('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>")
         vim.keymap.set('n', '<leader>fm', "<cmd>lua require('fzf-lua').oldfiles()<CR>")
@@ -194,9 +195,21 @@ return require('packer').startup(function(use)
     use 'osyo-manga/vim-precious'
     use 'Shougo/context_filetype.vim'
 
+
     use {'lukas-reineke/indent-blankline.nvim', config=function()
+      vim.opt.list = true
+      vim.opt.listchars:append "space:⋅"
+      vim.opt.listchars:append "eol:↴"
+
+      vim.cmd([[
+        augroup IndentBlanklineContextAutogroup
+          autocmd!
+          autocmd CursorMoved * IndentBlanklineRefresh
+        augroup END
+      ]])
+
       require("indent_blankline").setup {
-        -- for example, context is off by default, use this to turn it on
+        space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
       }
@@ -222,6 +235,8 @@ return require('packer').startup(function(use)
       'notjedi/nvim-rooter.lua',
       config = function() require'nvim-rooter'.setup() end
       }
+
+    use{'tyru/capture.vim'}
 
 
     if PACKER_BOOTSTRAP then
