@@ -71,14 +71,14 @@ vim.cmd([[
     autocmd!
     " フォーカスした時(colorscheme準拠に切替)
     autocmd FocusGained * hi Normal ctermbg=235 guibg=#282c34" :hi Normalで取得した値
-    autocmd FocusGained * hi NonText ctermbg=235 guibg=#282c34 " :hi NonTextで取得した値
-    autocmd FocusGained * hi SpecialKey ctermbg=235 guibg=#282c34 " :hi SpecialKeyで取得した値
-    autocmd FocusGained * hi EndOfBuffer ctermbg=none " EndOfBufferの設定は恐らくclearなのでnoneを入れる
+""    autocmd FocusGained * hi NonText ctermbg=235 guibg=#282c34 " :hi NonTextで取得した値
+""    autocmd FocusGained * hi SpecialKey ctermbg=235 guibg=#282c34 " :hi SpecialKeyで取得した値
+""    autocmd FocusGained * hi EndOfBuffer ctermbg=235 " EndOfBufferの設定は恐らくclearなのでnoneを入れる
     " フォーカスを外した時（フォーカスしていない時の背景色に切替)
     autocmd FocusLost * hi Normal ctermbg=250 guibg=.g:InactiveBackGround" 
-    autocmd FocusLost * hi NonText ctermbg=250 guibg=.g:InactiveBackGround" 
-    autocmd FocusLost * hi SpecialKey ctermbg=250 guibg=.g:InactiveBackGround" 
-    autocmd FocusLost * hi EndOfBuffer ctermbg=none guibg=.g:InactiveBackGround"
+""    autocmd FocusLost * hi NonText ctermbg=250 guibg=.g:InactiveBackGround" 
+""    autocmd FocusLost * hi SpecialKey ctermbg=250 guibg=.g:InactiveBackGround" 
+""    autocmd FocusLost * hi EndOfBuffer ctermbg=250 guibg=.g:InactiveBackGround"
   augroup end
 ]]) 
 
