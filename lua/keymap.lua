@@ -71,8 +71,8 @@ keymap("n", "<Esc><Esc>", ":<C-u>:noh<Return>", opts)
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "jj", "<ESC>", opts)
-keymap("i",  "AA",  "<ESC>A",  opts)
-keymap("i",  ";;",  "<C-o>A;<ESC>", opts);
+keymap("i", "AA", "<ESC>A", opts)
+keymap("i", ";;", "<C-o>A;<ESC>", opts)
 
 -- コンマの後に自動的にスペースを挿入
 keymap("i", ",", ",<Space>", opts)
@@ -91,7 +91,6 @@ keymap("v", "<C-p>", '"0p', opts)
 -- <Leader>w でバッファに書き込み
 keymap("n", "<Leader>w", ":w<Return>", opts)
 
-
 vim.cmd([[
 if executable('atcoder-tools')
   command! AtcoderTest !g++ -std=gnu++17 -Wall -Wextra -Wno-unused-result -O2 main.cpp -I /Users/keisuke/workspace/atcoder/ac-library && atcoder-tools test
@@ -99,3 +98,41 @@ if executable('atcoder-tools')
   nnoremap <Leader>at :AtcoderTest<CR>
   endif
   ]])
+
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set("n", "e", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "q", vim.diagnostic.setloclist)
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(ev)
+		-- Enable completion triggered by
+		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+		-- Buffer local mappings.
+		-- See `:help vim.lsp.*` for documentation on any of the below functions
+		local lspopts = { buffer = ev.buf }
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lspopts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, lspopts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, lspopts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, lspopts)
+		-- vim.keymap.set('n', '', vim.lsp.buf.signature_help, lspopts)
+		-- vim.keymap.set('n', 'wa', vim.lsp.buf.add_workspace_folder, lspopts)
+		-- vim.keymap.set('n', 'wr', vim.lsp.buf.remove_workspace_folder, lspopts)
+		-- vim.keymap.set('n', 'wl', function()
+		--   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		-- end, lspopts)
+		-- vim.keymap.set('n', 'D', vim.lsp.buf.type_definition, lspopts)
+		vim.keymap.set("n", "rn", vim.lsp.buf.rename, lspopts)
+		-- vim.keymap.set({ 'n', 'v' }, 'ca', vim.lsp.buf.code_action, lspopts)
+		-- vim.keymap.set('n', 'gr', vim.lsp.buf.references, lspopts)
+		vim.keymap.set("n", "<space>f", function()
+			vim.lsp.buf.format({ async = true })
+		end, lspopts)
+	end,
+})
