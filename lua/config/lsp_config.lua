@@ -44,6 +44,7 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.flake8, -- python linter
 		null_ls.builtins.formatting.stylua, -- lua formatter
 		null_ls.builtins.diagnostics.luacheck, -- lua linter
+		null_ls.builtins.formatting.fixjson, -- jxon formatter
+		null_ls.builtins.diagnostics.jsonlint, -- jxon formatter
 	},
 })
-

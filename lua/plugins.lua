@@ -137,6 +137,18 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
+  use("hrsh7th/cmp-vsnip")
+  use({"hrsh7th/vim-vsnip", config=function()
+    vim.cmd([[
+        let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip')
+        " Jump forward or backward
+        imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+      ]])
+  end})
+  use("rafamadriz/friendly-snippets")
 	use("onsails/lspkind.nvim")
 	use({
 		"williamboman/mason.nvim",
