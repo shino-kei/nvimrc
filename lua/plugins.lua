@@ -152,7 +152,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("rafamadriz/friendly-snippets")
-  use("SweiLz/ROS-Snippets")
+	use("SweiLz/ROS-Snippets")
 	use("onsails/lspkind.nvim")
 	use({
 		"williamboman/mason.nvim",
