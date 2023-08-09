@@ -72,7 +72,7 @@ return require("packer").startup(function(use)
 			map("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
 
 			require("barbar").setup({
-				hide = { extensions = true, inactive = false },
+				hide = { extensions = false, inactive = false },
 				icons = {
 					-- Configure the base icons on the bufferline.
 					-- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
