@@ -266,7 +266,7 @@ return require("packer").startup(function(use)
 
   use({
     "folke/noice.nvim",
-    requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", },
+    requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
     config = function()
       require("noice").setup({
         lsp = {
@@ -286,12 +286,11 @@ return require("packer").startup(function(use)
           lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
         messages = {
-          enabled = false
+          enabled = false,
         },
       })
-    end
+    end,
   })
-
 
   -- others
   use("cespare/vim-toml")
