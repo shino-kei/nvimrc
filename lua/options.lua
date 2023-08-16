@@ -8,7 +8,6 @@ local options = {
 	completeopt = { "menuone", "noselect" },
 	conceallevel = 0,
 	hlsearch = true,
-	ignorecase = true,
 	mouse = "a",
 	pumheight = 10,
 	showmode = false,
