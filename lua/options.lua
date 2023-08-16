@@ -13,10 +13,10 @@ local options = {
 	showmode = false,
 	showtabline = 2,
 	smartcase = true,
-	ignorecase = true, 
-	incsearch = true, 
+	ignorecase = true,
+	incsearch = true,
 	smartindent = true,
-	autoindent = true, 
+	autoindent = true,
 	expandtab = true,
 	swapfile = false,
 	termguicolors = true,
@@ -36,7 +36,7 @@ local options = {
 	wrap = false,
 	winblend = 0,
 	wildoptions = "pum",
-  wildmode = {"longest:full",  "full"},
+	wildmode = { "longest:full", "full" },
 	pumblend = 5,
 	background = "dark",
 	scrolloff = 8,
@@ -59,8 +59,7 @@ vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
-
-vim.cmd 'colorscheme onedark'
+vim.cmd("colorscheme onedark")
 vim.cmd([[
   let g:InactiveBackGround = 'ctermbg=240'
   hi Search ctermbg=Cyan
@@ -73,10 +72,9 @@ vim.cmd([[
 ""    autocmd FocusGained * hi SpecialKey ctermbg=235 guibg=#282c34 " :hi SpecialKeyで取得した値
 ""    autocmd FocusGained * hi EndOfBuffer ctermbg=235 " EndOfBufferの設定は恐らくclearなのでnoneを入れる
     " フォーカスを外した時（フォーカスしていない時の背景色に切替)
-    autocmd FocusLost * hi Normal ctermbg=250 guibg=.g:InactiveBackGround" 
-""    autocmd FocusLost * hi NonText ctermbg=250 guibg=.g:InactiveBackGround" 
-""    autocmd FocusLost * hi SpecialKey ctermbg=250 guibg=.g:InactiveBackGround" 
+    autocmd FocusLost * hi Normal ctermbg=250 guibg=.g:InactiveBackGround"
+""    autocmd FocusLost * hi NonText ctermbg=250 guibg=.g:InactiveBackGround"
+""    autocmd FocusLost * hi SpecialKey ctermbg=250 guibg=.g:InactiveBackGround"
 ""    autocmd FocusLost * hi EndOfBuffer ctermbg=250 guibg=.g:InactiveBackGround"
   augroup end
-]]) 
-
+]])
