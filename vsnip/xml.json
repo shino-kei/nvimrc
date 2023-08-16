@@ -1,0 +1,62 @@
+{
+  "ROS1 launch tag": {
+    "prefix": "launch",
+    "body": [
+      "<launch>",
+      "  ${1:target}",
+      "</launch>"
+    ],
+    "description": "ROS1 launch tag"
+  },
+  "ROS1 include tag": {
+    "prefix": "include",
+    "body": [
+      "<include file=\"$(find ${1:pkg-name})/${2:path.launch}\"/>"
+    ],
+    "description": "ROS1 include tag"
+  },
+  "ROS1 node tag": {
+    "prefix": "node",
+    "body": [
+      "<node pkg=\"${1}\" type=\"${2}\" name=\"${3}\" args=\"${4}\" output=\"${5}\"/>"
+    ],
+    "description": "ROS1 node tag"
+  },
+  "ROS1 node tag2": {
+    "prefix": "node2",
+    "body": [
+      "<node pkg=\"${1}\" type=\"${2}\" name=\"${3}\" args=\"${4}\">",
+      "  ${5}",
+      "</node>"
+    ],
+    "description": "ROS1 node tag2"
+  },
+  "ROS1 arg tag": {
+    "prefix": "arg",
+    "body": [
+      "<arg name=\"${1}\" default=\"${2}\"/>"
+    ],
+    "description": "ROS1 arg tag"
+  },
+  "ROS1 rosparam tag": {
+    "prefix": "rosparam",
+    "body": [
+      "<rosparam command=\"load\" file=\"$(find ${1:pkg-name})/${2:path.yaml}\"/>"
+    ],
+    "description": "ROS1 rosparam tag"
+  },
+  "ROS1 remap topic": {
+    "prefix": "remap",
+    "body": [
+      "<remap from=\"${1:from_topic}\" to=\"${2:to_topic}\"/>"
+    ],
+    "description": "ROS1 remap topic"
+  },
+  "ROS1 static transform publisher": {
+    "prefix": "static_tf",
+    "body": [
+      "<node pkg=\"tf2_ros\" type=\"static_transform_publisher\" name=\"${1:node_name}\" args=\"0 0 0 0 0 0 1 ${2:parent_frame} ${3:child_frame}\" />"
+    ],
+    "description": "ROS1 static transform publisher"
+  }
+}
