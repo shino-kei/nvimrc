@@ -137,7 +137,7 @@ return require("packer").startup(function(use)
   use("hrsh7th/cmp-path")
   use("hrsh7th/cmp-cmdline")
   use("hrsh7th/nvim-cmp")
-  use{"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+  use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
   use("jay-babu/mason-nvim-dap.nvim")
   use("hrsh7th/cmp-vsnip")
   use({
