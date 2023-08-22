@@ -242,6 +242,23 @@ return require("packer").startup(function(use)
     end,
   })
 
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      
+      vim.cmd([[
+        nmap <Leader><Leader> [hop]
+        nnoremap <silent> [hop]w :HopWord<CR>
+        nnoremap <silent> [hop]l :HopLine<CR>
+        nnoremap <silent> [hop]f :HopChar1<CR>
+      ]])
+    end
+  }
+
+
   -- appearence
   use("osyo-manga/vim-precious")
   use("Shougo/context_filetype.vim")
