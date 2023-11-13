@@ -243,22 +243,21 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
+  use({
+    "phaazon/hop.nvim",
+    branch = "v2",     -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-      
+      require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+
       vim.cmd([[
         nmap <Leader><Leader> [hop]
         nnoremap <silent> [hop]w :HopWord<CR>
         nnoremap <silent> [hop]l :HopLine<CR>
         nnoremap <silent> [hop]f :HopChar1<CR>
       ]])
-    end
-  }
-
+    end,
+  })
 
   -- appearence
   use("osyo-manga/vim-precious")
@@ -302,10 +301,10 @@ return require("packer").startup(function(use)
         -- you can enable a preset for easier configuration
         presets = {
           -- bottom_search = false,   -- use a classic bottom cmdline for search
-          command_palette = true,       -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,       -- add a border to hover docs and signature help
+          command_palette = true,                 -- position the cmdline and popupmenu together
+          long_message_to_split = true,           -- long messages will be sent to a split
+          inc_rename = false,                     -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,                 -- add a border to hover docs and signature help
         },
         messages = {
           enabled = false,
