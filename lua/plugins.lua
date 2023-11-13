@@ -166,7 +166,8 @@ return require("packer").startup(function(use)
     "neovim/nvim-lspconfig",
     "jay-babu/mason-null-ls.nvim",
   })
-  use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+  -- use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "nvimtools/none-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
   -- telescope
   use({
