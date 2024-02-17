@@ -7,7 +7,12 @@ return {
   {"nvim-lua/plenary.nvim"},
 
   -- color schemes
-  {"joshdick/onedark.vim"},
+  {
+    "joshdick/onedark.vim",
+    config = function()
+      vim.cmd("colorscheme onedark")
+    end,
+  },
 
   {"nvim-tree/nvim-web-devicons"},
 
