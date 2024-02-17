@@ -4,7 +4,7 @@ return {
     config = true,
   },
 
-  {"nvim-lua/plenary.nvim"},
+  { "nvim-lua/plenary.nvim" },
 
   -- color schemes
   {
@@ -14,7 +14,7 @@ return {
     end,
   },
 
-  {"nvim-tree/nvim-web-devicons"},
+  { "nvim-tree/nvim-web-devicons" },
 
   {
     "romgrk/barbar.nvim",
@@ -98,14 +98,14 @@ return {
     end,
   },
 
-  {"hrsh7th/cmp-nvim-lsp"},
-  {"hrsh7th/cmp-buffer"},
-  {"hrsh7th/cmp-path"},
-  {"hrsh7th/cmp-cmdline"},
-  {"hrsh7th/nvim-cmp"},
-  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
-  {"jay-babu/mason-nvim-dap.nvim"},
-  {"hrsh7th/cmp-vsnip"},
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" },
+  { "hrsh7th/nvim-cmp" },
+  { "rcarriga/nvim-dap-ui",        dependencies = { "mfussenegger/nvim-dap" } },
+  { "jay-babu/mason-nvim-dap.nvim" },
+  { "hrsh7th/cmp-vsnip" },
   {
     "hrsh7th/vim-vsnip",
     config = function()
@@ -124,19 +124,20 @@ return {
     end,
   },
 
-  {"rafamadriz/friendly-snippets"},
-  {"SweiLz/ROS-Snippets"},
-  {"onsails/lspkind.nvim"},
+  { "rafamadriz/friendly-snippets" },
+  { "SweiLz/ROS-Snippets" },
+  { "onsails/lspkind.nvim" },
   {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     "jay-babu/mason-null-ls.nvim",
   },
-  { "nvimtools/none-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
+  { "nvimtools/none-ls.nvim",     dependencies = "nvim-lua/plenary.nvim" },
 
 
-  { "ibhagwan/fzf-lua",
+  {
+    "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("fzf-lua").setup({
@@ -156,7 +157,8 @@ return {
     end,
   },
 
-  { "itchyny/lightline.vim",
+  {
+    "itchyny/lightline.vim",
     config = function()
       -- FIXME
     end,
@@ -207,7 +209,7 @@ return {
 
   {
     "phaazon/hop.nvim",
-    branch = "v2",     -- optional but strongly recommended
+    branch = "v2", -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
       require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
@@ -223,8 +225,8 @@ return {
 
 
   -- appearence
-  {"osyo-manga/vim-precious"},
-  {"Shougo/context_filetype.vim"},
+  { "osyo-manga/vim-precious" },
+  { "Shougo/context_filetype.vim" },
 
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -264,10 +266,10 @@ return {
         -- you can enable a preset for easier configuration
         presets = {
           -- bottom_search = false,   -- use a classic bottom cmdline for search
-          command_palette = true,                 -- position the cmdline and popupmenu together
-          long_message_to_split = true,           -- long messages will be sent to a split
-          inc_rename = false,                     -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,                 -- add a border to hover docs and signature help
+          command_palette = true,       -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
         messages = {
           enabled = false,
@@ -304,10 +306,10 @@ return {
     "ojroques/nvim-osc52",
     config = function()
       require("osc52").setup({
-        max_length = 0,                   -- Maximum length of selection (0 for no limit)
-        silent = false,                   -- Disable message on successful copy
-        trim = false,                     -- Trim surrounding whitespaces before copy
-        tmux_passthrough = false,         -- Use tmux passthrough (requires tmux: set -g allow-passthrough on)
+        max_length = 0,           -- Maximum length of selection (0 for no limit)
+        silent = false,           -- Disable message on successful copy
+        trim = false,             -- Trim surrounding whitespaces before copy
+        tmux_passthrough = false, -- Use tmux passthrough (requires tmux: set -g allow-passthrough on)
       })
       function copy()
         if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
@@ -320,4 +322,3 @@ return {
   },
 
 } -- END OF CONFIG --
-
