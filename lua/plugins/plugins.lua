@@ -147,6 +147,15 @@ return {
             layout = "vertical",
           },
         },
+        previewers = {
+          builtin = {
+            -- syntax = false,
+            treesitter = {
+              enable = true,
+              disable = { 'lua' },
+            }
+          },
+        },
       })
       vim.keymap.set("n", "<leader>g", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>")
       vim.keymap.set("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>")
