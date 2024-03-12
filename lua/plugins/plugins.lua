@@ -147,6 +147,15 @@ return {
             layout = "vertical",
           },
         },
+        previewers = {
+          builtin = {
+            -- syntax = false,
+            treesitter = {
+              enable = true,
+              disable = { 'lua' },
+            }
+          },
+        },
       })
       vim.keymap.set("n", "<leader>g", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>")
       vim.keymap.set("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>")
@@ -182,17 +191,17 @@ return {
     end,
   },
 
-
-  -- {"kana/vim-operator-user"},
-  --
-  -- {
-  --   "rhysd/vim-operator-surround",
-  --   config = function()
-  --     vim.cmd([[map <silent>sa <Plug>(operator-surround-append)]])
-  --     vim.cmd([[map <silent>sd <Plug>(operator-surround-delete)]])
-  --     vim.cmd([[map <silent>sr <Plug>(operator-surround-replace)]])
-  --   end,
-  -- },
+  {
+    "rhysd/vim-operator-surround",
+    dependencies = {
+      "kana/vim-operator-user",
+    },
+    config = function()
+      vim.cmd([[map <silent>sa <Plug>(operator-surround-append)]])
+      vim.cmd([[map <silent>sd <Plug>(operator-surround-delete)]])
+      vim.cmd([[map <silent>sr <Plug>(operator-surround-replace)]])
+    end,
+  },
 
   {
     "hrsh7th/vim-eft",
