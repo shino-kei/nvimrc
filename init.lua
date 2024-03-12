@@ -1,11 +1,6 @@
 require("base")
--- require("plugins")
 require("keymap")
 require("options")
-require("config/nvim_cmp_config")
-require("config/lsp_config")
-require("config/dap_config")
-
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -32,3 +27,7 @@ require("lazy").setup("plugins", {
     },
   },
 })
+
+require("config/nvim_cmp_config")
+require("config/lsp_config")
+require("config/dap_config")
