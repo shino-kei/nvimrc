@@ -103,7 +103,7 @@ return {
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
   { "hrsh7th/nvim-cmp" },
-  { "rcarriga/nvim-dap-ui",        dependencies = { "mfussenegger/nvim-dap" } },
+  { "rcarriga/nvim-dap-ui",        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"  } },
   { "jay-babu/mason-nvim-dap.nvim" },
   { "hrsh7th/cmp-vsnip" },
   {
