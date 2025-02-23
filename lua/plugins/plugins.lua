@@ -1,141 +1,146 @@
 return {
-  {
-    "windwp/nvim-autopairs",
-    config = true,
-  },
 
+  ------------------------------------------------------------------------------
+  -- 基本ライブラリと共通依存パッケージ
+  ------------------------------------------------------------------------------
   { "nvim-lua/plenary.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
 
-  -- color schemes
+  ------------------------------------------------------------------------------
+  -- カラースキーム＆見た目の改善
+  ------------------------------------------------------------------------------
   {
     "joshdick/onedark.vim",
     config = function()
       vim.cmd("colorscheme onedark")
     end,
   },
+  { "osyo-manga/vim-precious" },
+  { "Shougo/context_filetype.vim" },
 
-  { "nvim-tree/nvim-web-devicons" },
-
+  ------------------------------------------------------------------------------
+  -- ステータスライン・バッファライン
+  ------------------------------------------------------------------------------
   {
     "romgrk/barbar.nvim",
     dependencies = "nvim-web-devicons",
     config = function()
-      vim.g.lightline = {
-        enable = { statusline = 1, tabline = 0 },
-      }
+      -- lightline 用の設定（barbar を使う場合も必要に応じて調整）
+      vim.g.lightline = { enable = { statusline = 1, tabline = 0 } }
       vim.g.bufferline_show_unlisted = true
 
       local map = vim.api.nvim_set_keymap
       local opts = { noremap = true, silent = true }
       map("n", "<leader><Tab>", "<Cmd>BufferNext<CR>", opts)
-      map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>", opts)
-      map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>", opts)
-      map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>", opts)
-      map("n", "<leader>4", "<Cmd>BufferGoto 4<CR>", opts)
-      map("n", "<leader>5", "<Cmd>BufferGoto 5<CR>", opts)
-      map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>", opts)
-      map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>", opts)
-      map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>", opts)
-      map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>", opts)
+      for i = 1, 9 do
+        map("n", "<leader>" .. i, string.format("<Cmd>BufferGoto %d<CR>", i), opts)
+      end
       map("n", "<leader>0", "<Cmd>BufferLast<CR>", opts)
 
       require("barbar").setup({
         hide = { extensions = false, inactive = false },
         icons = {
-          -- Configure the base icons on the bufferline.
-          -- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
           buffer_index = false,
           buffer_number = false,
           button = "-",
-          -- Enables / disables diagnostic symbols
           diagnostics = {
             [vim.diagnostic.severity.ERROR] = { enabled = true, icon = "ﬀ" },
-            [vim.diagnostic.severity.WARN] = { enabled = false },
-            [vim.diagnostic.severity.INFO] = { enabled = false },
-            [vim.diagnostic.severity.HINT] = { enabled = true },
+            [vim.diagnostic.severity.WARN]  = { enabled = false },
+            [vim.diagnostic.severity.INFO]  = { enabled = false },
+            [vim.diagnostic.severity.HINT]  = { enabled = true },
           },
           gitsigns = {
-            added = { enabled = true, icon = "+" },
+            added   = { enabled = true, icon = "+" },
             changed = { enabled = true, icon = "~" },
             deleted = { enabled = true, icon = "-" },
           },
           filetype = {
-            -- Sets the icon's highlight group.
-            -- If false, will use nvim-web-devicons colors
             custom_colors = false,
-
-            -- Requires `nvim-web-devicons` if `true`
             enabled = true,
           },
           separator = { left = "▎", right = "" },
-
-          -- Configure the icons on the bufferline when modified or pinned.
-          -- Supports all the base icon options.
           modified = { button = "●" },
           pinned = { button = "!", filename = true, separator = { right = "" } },
-
-          -- Configure the icons on the bufferline based on the visibility of a buffer.
-          -- Supports all the base icon options, plus `modified` and `pinned`.
           alternate = { filetype = { enabled = false } },
-          current = { buffer_index = true },
-          inactive = { button = "×" },
-          visible = { modified = { buffer_number = false } },
+          current   = { buffer_index = true },
+          inactive  = { button = "×" },
+          visible   = { modified = { buffer_number = false } },
         },
       })
-
-      -- require'bufferline'.setup { }
+    end,
+  },
+  {
+    "itchyny/lightline.vim",
+    config = function()
+      -- FIXME: lightline の設定を必要に応じて追加
     end,
   },
 
+  ------------------------------------------------------------------------------
+  -- ファイルツリー・エクスプローラー
+  ------------------------------------------------------------------------------
   {
     "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup()
       vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
     end,
   },
 
+  ------------------------------------------------------------------------------
+  -- 自動補完・スニペット関連
+  ------------------------------------------------------------------------------
+  { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
-  { "hrsh7th/nvim-cmp" },
-  { "rcarriga/nvim-dap-ui",        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"  } },
-  { "jay-babu/mason-nvim-dap.nvim" },
   { "hrsh7th/cmp-vsnip" },
   {
     "hrsh7th/vim-vsnip",
     config = function()
       vim.cmd([[
         let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip')
-        " Jump forward or backward
-        imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        imap <expr> <C-k>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        smap <expr> <C-k>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        imap <expr> <C-j> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        smap <expr> <C-j> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        " ジャンプ設定
+        imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+        smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+        imap <expr> <C-k>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+        smap <expr> <C-k>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+        imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+        smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+        imap <expr> <C-j>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+        smap <expr> <C-j>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
       ]])
     end,
   },
-
   { "rafamadriz/friendly-snippets" },
   { "SweiLz/ROS-Snippets" },
   { "onsails/lspkind.nvim" },
+
+  ------------------------------------------------------------------------------
+  -- LSP, Mason, Null-ls 関連
+  ------------------------------------------------------------------------------
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
+  { "neovim/nvim-lspconfig" },
+  { "jay-babu/mason-null-ls.nvim" },
+  { "nvimtools/none-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
+  { "jay-babu/mason-nvim-dap.nvim" },
+
+  ------------------------------------------------------------------------------
+  -- デバッグ (DAP) 関連
+  ------------------------------------------------------------------------------
+  { "mfussenegger/nvim-dap" },
+  { "nvim-neotest/nvim-nio" },
   {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-    "jay-babu/mason-null-ls.nvim",
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
   },
-  { "nvimtools/none-ls.nvim",     dependencies = "nvim-lua/plenary.nvim" },
 
-
+  ------------------------------------------------------------------------------
+  -- ナビゲーション＆検索
+  ------------------------------------------------------------------------------
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -143,17 +148,11 @@ return {
       require("fzf-lua").setup({
         winopts = {
           fullscreen = true,
-          preview = {
-            layout = "vertical",
-          },
+          preview = { layout = "vertical" },
         },
         previewers = {
           builtin = {
-            -- syntax = false,
-            treesitter = {
-              enable = true,
-              disable = { 'lua' },
-            }
+            treesitter = { enable = true, disable = { 'lua' } },
           },
         },
       })
@@ -165,66 +164,13 @@ return {
       vim.keymap.set("n", "<leader>fc", "<cmd>lua require('fzf-lua').builtin()<CR>")
     end,
   },
-
-  {
-    "itchyny/lightline.vim",
-    config = function()
-      -- FIXME
-    end,
-  },
-
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup()
-    end,
-  },
-
-  -- mappings
-  {
-    "tyru/caw.vim",
-    config = function()
-      vim.cmd([[
-      nmap <Leader>c <Plug>(caw:hatpos:toggle)
-      vmap <Leader>c <Plug>(caw:hatpos:toggle)
-      ]])
-    end,
-  },
-
-  {
-    "rhysd/vim-operator-surround",
-    dependencies = {
-      "kana/vim-operator-user",
-    },
-    config = function()
-      vim.cmd([[map <silent>sa <Plug>(operator-surround-append)]])
-      vim.cmd([[map <silent>sd <Plug>(operator-surround-delete)]])
-      vim.cmd([[map <silent>sr <Plug>(operator-surround-replace)]])
-    end,
-  },
-
-  {
-    "hrsh7th/vim-eft",
-    config = function()
-      vim.cmd([[
-      nmap f <Plug>(eft-f)
-      xmap f <Plug>(eft-f)
-      omap f <Plug>(eft-f)
-      nmap F <Plug>(eft-F)
-      xmap F <Plug>(eft-F)
-      omap F <Plug>(eft-F) ]])
-    end,
-  },
-
   {
     "phaazon/hop.nvim",
-    branch = "v2", -- optional but strongly recommended
+    branch = "v2",
     config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
       require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-
       vim.cmd([[
-        nmap <Leader><Leader> [hop]
+        nnoremap <Leader><Leader> [hop]
         nnoremap <silent> [hop]w :HopWord<CR>
         nnoremap <silent> [hop]l :HopLine<CR>
         nnoremap <silent> [hop]f :HopChar1<CR>
@@ -232,11 +178,66 @@ return {
     end,
   },
 
+  ------------------------------------------------------------------------------
+  -- Git 関連
+  ------------------------------------------------------------------------------
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+    end,
+  },
 
-  -- appearence
-  { "osyo-manga/vim-precious" },
-  { "Shougo/context_filetype.vim" },
+  ------------------------------------------------------------------------------
+  -- 各種操作を強化するプラグイン
+  ------------------------------------------------------------------------------
+  {
+    "tyru/caw.vim",
+    config = function()
+      vim.cmd([[
+        nmap <Leader>c <Plug>(caw:hatpos:toggle)
+        vmap <Leader>c <Plug>(caw:hatpos:toggle)
+      ]])
+    end,
+  },
+  {
+    "rhysd/vim-operator-surround",
+    dependencies = { "kana/vim-operator-user" },
+    config = function()
+      vim.cmd([[
+        map <silent>sa <Plug>(operator-surround-append)
+        map <silent>sd <Plug>(operator-surround-delete)
+        map <silent>sr <Plug>(operator-surround-replace)
+      ]])
+    end,
+  },
+  {
+    "hrsh7th/vim-eft",
+    config = function()
+      vim.cmd([[
+        nmap f <Plug>(eft-f)
+        xmap f <Plug>(eft-f)
+        omap f <Plug>(eft-f)
+        nmap F <Plug>(eft-F)
+        xmap F <Plug>(eft-F)
+        omap F <Plug>(eft-F)
+      ]])
+    end,
+  },
 
+  ------------------------------------------------------------------------------
+  -- Treesitter とインデント表示
+  ------------------------------------------------------------------------------
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = { "c", "lua", "rust" },
+        highlight = { enable = true },
+      }
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -244,17 +245,9 @@ return {
     end,
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = { "c", "lua", "rust" },
-        highlight = { enable = true, }
-      }
-    end
-  },
-
+  ------------------------------------------------------------------------------
+  -- 自動括弧閉じなどの編集支援
+  ------------------------------------------------------------------------------
   {
     "windwp/nvim-autopairs",
     config = function()
@@ -262,75 +255,76 @@ return {
     end,
   },
 
+  ------------------------------------------------------------------------------
+  -- UI 強化 (通知や LSP 表示など)
+  ------------------------------------------------------------------------------
   {
     "folke/noice.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
     config = function()
       require("noice").setup({
         lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
+            ["vim.lsp.util.stylize_markdown"]            = true,
+            ["cmp.entry.get_documentation"]              = true,
           },
         },
-        -- you can enable a preset for easier configuration
         presets = {
-          -- bottom_search = false,   -- use a classic bottom cmdline for search
-          command_palette = true,       -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,       -- add a border to hover docs and signature help
+          command_palette       = true,
+          long_message_to_split = true,
+          inc_rename            = false,
+          lsp_doc_border        = false,
         },
-        messages = {
-          enabled = false,
-        },
+        messages = { enabled = false },
       })
     end,
   },
 
+  ------------------------------------------------------------------------------
+  -- ROS 関連・その他の便利機能
+  ------------------------------------------------------------------------------
   {
     "taketwo/vim-ros",
     config = function()
-      vim.cmd([[autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml]])
+      vim.cmd("autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml")
     end,
   },
-
   {
     "voldikss/vim-translator",
     config = function()
-      vim.cmd([[let g:translator_target_lang = 'ja' ]])
-      vim.cmd([[let g:translator_default_engines = ['google'] ]])
+      vim.cmd("let g:translator_target_lang = 'ja'")
+      vim.cmd("let g:translator_default_engines = ['google']")
     end,
   },
-
   {
     "notjedi/nvim-rooter.lua",
     config = function()
       require("nvim-rooter").setup()
     end,
   },
-
   { "tyru/capture.vim" },
-
   {
     "ojroques/nvim-osc52",
     config = function()
       require("osc52").setup({
-        max_length = 0,           -- Maximum length of selection (0 for no limit)
-        silent = false,           -- Disable message on successful copy
-        trim = false,             -- Trim surrounding whitespaces before copy
-        tmux_passthrough = false, -- Use tmux passthrough (requires tmux: set -g allow-passthrough on)
+        max_length       = 0,
+        silent           = false,
+        trim             = false,
+        tmux_passthrough = false,
       })
-      function copy()
+      local function copy()
         if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
           require("osc52").copy_register("+")
         end
       end
-
       vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
     end,
   },
 
-} -- END OF CONFIG --
+  ------------------------------------------------------------------------------
+  -- GitHub Copilot
+  ------------------------------------------------------------------------------
+  { "github/copilot.vim" },
+
+}
