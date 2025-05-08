@@ -152,7 +152,7 @@ return {
         },
         previewers = {
           builtin = {
-            treesitter = { enable = true, disable = { 'lua' } },
+            treesitter = { enabled = true, disabled = { 'lua' } },
           },
         },
       })
