@@ -61,6 +61,9 @@ keymap("n", "Y", "y$", opts)
 -- <Space>q で強制終了
 keymap("n", "<Space>q", ":<C-u>q!<Return>", opts)
 
+-- <Space>o でonly（現在のウィンドウ以外を閉じる）
+keymap("n", "<Space>o", ":only<Return>", opts)
+
 -- ESC*2 でハイライトやめる
 keymap("n", "<Esc><Esc>", ":<C-u>:noh<Return>", opts)
 
