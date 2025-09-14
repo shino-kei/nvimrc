@@ -83,7 +83,14 @@ return {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        actions = {
+          open_file = {
+            quit_on_open = true,  -- ファイルを開いたらツリーを閉じる
+            resize_window = true, -- 自動で幅調整
+          },
+        },
+      })
       vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
     end,
   },
