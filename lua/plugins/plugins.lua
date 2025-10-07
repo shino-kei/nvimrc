@@ -114,10 +114,10 @@ return {
         smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
         imap <expr> <C-k>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
         smap <expr> <C-k>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-        imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-        smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-        imap <expr> <C-j>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-        smap <expr> <C-j>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+        imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-d>'
+        smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-d>'
+        imap <expr> <C-j>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-d>'
+        smap <expr> <C-j>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-d>'
       ]])
     end,
   },
