@@ -164,7 +164,17 @@ return {
         },
       })
       vim.keymap.set("n", "<leader>g", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>")
-      vim.keymap.set("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>")
+      vim.keymap.set("n", "<leader>fg", function()
+        local search_pattern = vim.fn.getreg("/")
+        
+        if vim.v.hlsearch == 1 and search_pattern ~= "" then
+          search_pattern = search_pattern:gsub("^\\<", ""):gsub("\\>$", "")
+          search_pattern = search_pattern:gsub("\\(.)", "%1")
+          require("fzf-lua").live_grep({ search = search_pattern })
+        else
+          require("fzf-lua").live_grep()
+        end
+      end)
       vim.keymap.set("v", "<leader>fg", "<cmd>lua require('fzf-lua').grep_visual()<CR>")
       vim.keymap.set("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>")
       vim.keymap.set("n", "<leader>fm", "<cmd>lua require('fzf-lua').oldfiles()<CR>")
