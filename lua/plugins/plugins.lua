@@ -15,9 +15,6 @@ return {
       vim.cmd("colorscheme onedark")
     end,
   },
-  { "osyo-manga/vim-precious" },
-  { "Shougo/context_filetype.vim" },
-
   ------------------------------------------------------------------------------
   -- ステータスライン・バッファライン
   ------------------------------------------------------------------------------
@@ -299,14 +296,8 @@ return {
   },
 
   ------------------------------------------------------------------------------
-  -- ROS 関連・その他の便利機能
+  -- その他の便利機能
   ------------------------------------------------------------------------------
-  {
-    "taketwo/vim-ros",
-    config = function()
-      vim.cmd("autocmd BufRead,BufNewFile *.launch setfiletype roslaunch.xml")
-    end,
-  },
   {
     "voldikss/vim-translator",
     config = function()
@@ -321,22 +312,5 @@ return {
     end,
   },
   { "tyru/capture.vim" },
-  -- {
-  --   "ojroques/nvim-osc52",
-  --   config = function()
-  --     require("osc52").setup({
-  --       max_length       = 0,
-  --       silent           = false,
-  --       trim             = false,
-  --       tmux_passthrough = false,
-  --     })
-  --     local function copy()
-  --       if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
-  --         require("osc52").copy_register("+")
-  --       end
-  --     end
-  --     vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
-  --   end,
-  -- },
 
 }
