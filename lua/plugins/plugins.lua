@@ -15,6 +15,25 @@ return {
       vim.cmd("colorscheme onedark")
     end,
   },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufNewFile", "BufReadPre" },
+    config = function()
+      require("treesitter-context").setup({
+        enable = true,
+        multiwindow = false,
+        max_lines = 0,
+        min_window_height = 0,
+        line_numbers = true,
+        multiline_threshold = 20,
+        trim_scope = "outer",
+        mode = "cursor",
+        separator = nil,
+        zindex = 20,
+        on_attach = nil,
+      })
+    end,
+  },
   ------------------------------------------------------------------------------
   -- ステータスライン・バッファライン
   ------------------------------------------------------------------------------
@@ -163,7 +182,7 @@ return {
       vim.keymap.set("n", "<leader>g", "<cmd>lua require('fzf-lua').lgrep_curbuf()<CR>")
       vim.keymap.set("n", "<leader>fg", function()
         local search_pattern = vim.fn.getreg("/")
-        
+
         if vim.v.hlsearch == 1 and search_pattern ~= "" then
           search_pattern = search_pattern:gsub("^\\<", ""):gsub("\\>$", "")
           search_pattern = search_pattern:gsub("\\(.)", "%1")
