@@ -15,25 +15,25 @@ return {
       vim.cmd("colorscheme onedark")
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufNewFile", "BufReadPre" },
-    config = function()
-      require("treesitter-context").setup({
-        enable = true,
-        multiwindow = false,
-        max_lines = 0,
-        min_window_height = 0,
-        line_numbers = true,
-        multiline_threshold = 20,
-        trim_scope = "outer",
-        mode = "cursor",
-        separator = nil,
-        zindex = 20,
-        on_attach = nil,
-      })
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-context",
+  --   event = { "BufNewFile", "BufReadPre" },
+  --   config = function()
+  --     require("treesitter-context").setup({
+  --       enable = true,
+  --       multiwindow = false,
+  --       max_lines = 0,
+  --       min_window_height = 0,
+  --       line_numbers = true,
+  --       multiline_threshold = 20,
+  --       trim_scope = "outer",
+  --       mode = "cursor",
+  --       separator = nil,
+  --       zindex = 20,
+  --       on_attach = nil,
+  --     })
+  --   end,
+  -- },
   ------------------------------------------------------------------------------
   -- ステータスライン・バッファライン
   ------------------------------------------------------------------------------
@@ -263,11 +263,21 @@ return {
   ------------------------------------------------------------------------------
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
-    opts = {
-      ensure_installed = { "c", "lua", "rust" },
-      highlight = { enable = true },
-    },
+    config = function()
+      -- mainブランチでは setup() のオプションは install_dir のみ
+      require("nvim-treesitter").setup({})
+
+      -- highlight は FileType イベントで手動起動（mainブランチでは自動適用が廃止）
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
+        callback = function()
+          -- pcall でパーサーが未インストールの場合のエラーを無視
+          pcall(vim.treesitter.start)
+        end,
+      })
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
