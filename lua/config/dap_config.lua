@@ -1,19 +1,11 @@
 require("mason-nvim-dap").setup({
-  ensure_installed = { "python", "codelldb" }
+  ensure_installed = { "python" }
 })
 
 local dap = require("dap")
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpointTextHl" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStoppedTextHl" })
 dap.adapters = {
-  codelldb = {
-    type = "server",
-    port = "${port}",
-    executable = {
-      command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb",
-      args = { "--port", "${port}" },
-    },
-  },
   debugpy = {
     type = "executable",
     command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python",
@@ -21,18 +13,6 @@ dap.adapters = {
   },
 }
 dap.configurations = {
-  cpp = {
-    {
-      name = "Launch file",
-      type = "codelldb",
-      request = "launch",
-      program = function()
-        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/a.out", "file")
-      end,
-      cwd = "${workspaceFolder}",
-      stopOnEntry = false,
-    },
-  },
   -- python = {
   --   {
   --     name = "Launch file",
